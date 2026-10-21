@@ -1,0 +1,15 @@
+# Yerel yayın
+dist/
+deploy.sh
+_dev.html
+.claude/
+
+# Sistem
+.DS_Store
+
+# Gizli dosyalar
+.env
+.env.*
+*.p8
+AuthKey_*
+*service-account*.json
