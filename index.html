@@ -538,12 +538,15 @@ kbd {
   .modes { margin-top: 8px; }
   .modes button { padding: 6px 10px; font-size: 12.5px; }
   .tools-group { align-items: flex-start; }
+  .tools, .tools-group { flex-direction: row; flex-wrap: wrap; gap: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .sys.swap { animation: none; }
   .phase.swap { animation: none; }
   .loader { transition: none; }
 }
+.lang button { padding: 5px 11px; font-size: 12.5px; letter-spacing: 0.06em; }
+.legend b { font-weight: inherit; }
 </style>
 </head>
 <body>
@@ -553,87 +556,91 @@ kbd {
   <main id="stage">
     <div class="topbar">
       <header class="brand">
-        <div class="eyebrow">5. Sınıf Fen Bilimleri · Güneş, Dünya ve Ay</div>
+        <div class="eyebrow" data-i18n="eyebrow">5. Sınıf Fen Bilimleri · Güneş, Dünya ve Ay</div>
         <h1 id="title">Ay'ın <span>Evreleri</span></h1>
         <p id="subtitle">Dünya Güneş'in, Ay da Dünya'nın etrafında dolanıyor. Ay'ın görünüşü her gün biraz değişir.</p>
-        <div class="modes glass" role="group" aria-label="Bölüm">
+        <div class="modes glass" role="group" data-i18n-aria="modeGroup" aria-label="Bölüm">
           <button data-mode="ay" aria-pressed="true">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>Ay'ın Evreleri
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><span data-i18n="modeAy">Ay'ın Evreleri</span>
           </button>
           <button data-mode="sys" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3.2" fill="currentColor"/><ellipse cx="12" cy="12" rx="10" ry="4.2"/></svg>Güneş Sistemi
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3.2" fill="currentColor"/><ellipse cx="12" cy="12" rx="10" ry="4.2"/></svg><span data-i18n="modeSys">Güneş Sistemi</span>
           </button>
         </div>
       </header>
       <div class="tools">
+        <div class="seg lang glass" role="group" aria-label="Dil / Language">
+          <button data-lang="tr" aria-pressed="true" lang="tr">TR</button>
+          <button data-lang="en" aria-pressed="false" lang="en">EN</button>
+        </div>
         <div id="ayTools" class="tools-group">
-          <div class="seg glass" role="group" aria-label="Kamera görünümü">
-            <button data-view="yakin" aria-pressed="true">Yakın</button>
-            <button data-view="ustten" aria-pressed="false">Üstten</button>
+          <div id="viewSeg" class="seg glass" role="group" data-i18n-aria="viewGroup" aria-label="Kamera görünümü">
+            <button data-view="yakin" aria-pressed="true" data-i18n="near">Yakın</button>
+            <button data-view="ustten" aria-pressed="false" data-i18n="top">Üstten</button>
           </div>
           <div class="chips">
-            <button id="tRings" class="chip-btn glass" aria-pressed="true">Yarım küre sınırları</button>
-            <button id="tLabels" class="chip-btn glass" aria-pressed="true">Evre adları</button>
-            <button id="tRays" class="chip-btn glass" aria-pressed="true">Güneş ışınları</button>
+            <button id="tRings" class="chip-btn glass" aria-pressed="true" data-i18n="rings">Yarım küre sınırları</button>
+            <button id="tLabels" class="chip-btn glass" aria-pressed="true" data-i18n="labels">Evre adları</button>
+            <button id="tRays" class="chip-btn glass" aria-pressed="true" data-i18n="rays">Güneş ışınları</button>
           </div>
           <div id="legend" class="legend glass">
-            <span><i style="background:var(--sun)"></i>Güneş'in aydınlattığı yarı</span>
-            <span><i style="background:var(--sky)"></i>Dünya'dan görülen yarı</span>
+            <span><i style="background:var(--sun)"></i><b data-i18n="legendLit">Güneş'in aydınlattığı yarı</b></span>
+            <span><i style="background:var(--sky)"></i><b data-i18n="legendSeen">Dünya'dan görülen yarı</b></span>
           </div>
         </div>
         <div id="sysTools" class="tools-group" hidden>
           <div class="chips">
-            <button id="tOrbits" class="chip-btn glass" aria-pressed="true">Yörüngeler</button>
-            <button id="tNames" class="chip-btn glass" aria-pressed="true">Adlar</button>
+            <button id="tOrbits" class="chip-btn glass" aria-pressed="true" data-i18n="orbits">Yörüngeler</button>
+            <button id="tNames" class="chip-btn glass" aria-pressed="true" data-i18n="names">Adlar</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="speed glass" title="Zamanın akış hızı (klavye: ↑ ↓, çift tıkla: varsayılan)">
+    <div class="speed glass" data-i18n-title="speedTitle" title="Zamanın akış hızı">
       <svg class="speed-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 13l3.5-3.5M10 2h4"/></svg>
-      <span class="speed-end">Hızlı</span>
-      <input id="speed" type="range" min="-5.6" max="8" step="0.01" value="-0.74" aria-label="Zamanın akış hızı">
-      <span class="speed-end">Yavaş</span>
-      <span class="speed-sub">1 sn =</span>
+      <span class="speed-end" data-i18n="fast">Hızlı</span>
+      <input id="speed" type="range" min="-5.6" max="8" step="0.01" value="-0.74" data-i18n-aria="speedAria" aria-label="Zamanın akış hızı">
+      <span class="speed-end" data-i18n="slow">Yavaş</span>
+      <span class="speed-sub" data-i18n="perSec">1 sn =</span>
       <output id="speedOut" for="speed">14 saat</output>
     </div>
 
     <div id="ayDock" class="dock">
-      <nav class="timeline glass" aria-label="Ay'ın evreleri">
-        <button id="prev" class="nav-btn" aria-label="Önceki evre">
+      <nav class="timeline glass" data-i18n-aria="phasesNav" aria-label="Ay'ın evreleri">
+        <button id="prev" class="nav-btn" data-i18n-aria="prevPhase" aria-label="Önceki evre">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
         </button>
         <div id="phases" class="phases"></div>
-        <button id="next" class="nav-btn" aria-label="Sonraki evre">
+        <button id="next" class="nav-btn" data-i18n-aria="nextPhase" aria-label="Sonraki evre">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <button id="play" class="nav-btn play" aria-label="Zamanı akıt" aria-pressed="false">
           <svg class="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
         </button>
       </nav>
-      <div class="hint"><kbd>←</kbd> <kbd>→</kbd> evreler arasında gez <span class="opt">· <kbd>Boşluk</kbd> zamanı akıt / durdur · <kbd>↑</kbd> <kbd>↓</kbd> hız · fareyle sürükleyip döndür</span></div>
+      <div class="hint" data-i18n-html="hintAy"></div>
     </div>
 
     <div id="sysDock" class="dock" hidden>
-      <nav class="timeline glass" aria-label="Gök cisimleri">
-        <button id="sysPrev" class="nav-btn" aria-label="Önceki gök cismi">
+      <nav class="timeline glass" data-i18n-aria="bodiesNav" aria-label="Gök cisimleri">
+        <button id="sysPrev" class="nav-btn" data-i18n-aria="prevBody" aria-label="Önceki gök cismi">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
         </button>
         <div id="bodies" class="phases"></div>
-        <button id="sysNext" class="nav-btn" aria-label="Sonraki gök cismi">
+        <button id="sysNext" class="nav-btn" data-i18n-aria="nextBody" aria-label="Sonraki gök cismi">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <button id="sysPlay" class="nav-btn play" aria-label="Zamanı durdur" aria-pressed="true">
           <svg class="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
         </button>
       </nav>
-      <div class="hint"><kbd>←</kbd> <kbd>→</kbd> gezegenler arasında gez <span class="opt">· <kbd>Esc</kbd> geri · <kbd>Boşluk</kbd> zamanı durdur · <kbd>↑</kbd> <kbd>↓</kbd> hız · tekerlekle yaklaş</span></div>
+      <div class="hint" data-i18n-html="hintSys"></div>
     </div>
 
     <div id="loader" class="loader">
       <div>
-        <span>Uzay hazırlanıyor…</span>
+        <span data-i18n="loading">Uzay hazırlanıyor…</span>
         <span class="bar"><i id="loadFill"></i></span>
       </div>
     </div>
@@ -643,19 +650,19 @@ kbd {
     <div id="ayPanel" class="sys">
       <section class="inset-card">
         <div class="inset-head">
-          <span class="eyebrow">Dünya'dan bakınca</span>
-          <span class="hemi">Kuzey Yarım Küre'den görünüş</span>
+          <span class="eyebrow" data-i18n="fromEarth">Dünya'dan bakınca</span>
+          <span class="hemi" data-i18n="hemi">Kuzey Yarım Küre'den görünüş</span>
         </div>
         <div id="inset" class="inset">
-          <canvas id="insetCanvas" aria-label="Ay'ın Dünya'dan görünüşü"></canvas>
+          <canvas id="insetCanvas" data-i18n-aria="insetAria" aria-label="Ay'ın Dünya'dan görünüşü"></canvas>
           <div class="reticle"></div>
-          <p id="insetNote" class="inset-note" hidden>Ay'ın karanlık yarısı bize dönük. Gökyüzünde göremeyiz.</p>
+          <p id="insetNote" class="inset-note" data-i18n="insetNote" hidden>Ay'ın karanlık yarısı bize dönük. Gökyüzünde göremeyiz.</p>
         </div>
         <div class="litbar">
-          <div class="litbar-top"><span>Bize aydınlık görünen kısım</span><b id="litPct">%0</b></div>
+          <div class="litbar-top"><span data-i18n="litLabel">Bize aydınlık görünen kısım</span><b id="litPct">%0</b></div>
           <div class="bar"><i id="litFill"></i></div>
-          <div class="litbar-top"><span>Yeni Ay'dan bu yana geçen süre</span><b id="ageTxt">0,0 gün</b></div>
-          <p id="spinNote" class="spin-note">Bu sürede Dünya kendi etrafında 0 kez döndü.</p>
+          <div class="litbar-top"><span data-i18n="ageLabel">Yeni Ay'dan bu yana geçen süre</span><b id="ageTxt">0,0 gün</b></div>
+          <p id="spinNote" class="spin-note"></p>
         </div>
       </section>
 
@@ -669,17 +676,17 @@ kbd {
         <dl class="facts">
           <div>
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.5 3"/></svg>
-            <dt>Ay nerede?</dt>
+            <dt data-i18n="where">Ay nerede?</dt>
             <dd id="phWhere"></dd>
           </div>
           <div>
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--sun)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M7 17a5 5 0 0 1 10 0"/><path d="M12 7V4M5.5 10.5 4 9M18.5 10.5 20 9"/></svg>
-            <dt>Ne zaman görülür?</dt>
+            <dt data-i18n="when">Ne zaman görülür?</dt>
             <dd id="phSky"></dd>
           </div>
         </dl>
         <aside class="know">
-          <h3>Biliyor musun?</h3>
+          <h3 data-i18n="know">Biliyor musun?</h3>
           <p id="phFact"></p>
         </aside>
       </section>
@@ -687,7 +694,7 @@ kbd {
 
     <div id="sysPanel" aria-live="polite" hidden></div>
 
-    <p class="footnote">Uzaklıklar ve büyüklükler gerçek ölçekte değildir: gök cisimleri rahat görülsün diye büyütüldü, aralarındaki mesafeler kısaltıldı. Ay'ın görünüşü Türkiye'nin de bulunduğu Kuzey Yarım Küre'ye göredir. Dokular: <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a> (CC BY 4.0). Açık kaynak: <a href="https://github.com/vevona/ay-evreleri" target="_blank" rel="noopener">github.com/vevona/ay-evreleri</a> (MIT).</p>
+    <p class="footnote" data-i18n-html="footnote"></p>
   </aside>
 </div>
 
@@ -708,165 +715,392 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
+/* ================= Arayüz metinleri (Türkçe / English) ================= */
+const SRC_LINKS = `<a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a> (CC BY 4.0)`;
+const REPO_LINK = `<a href="https://github.com/vevona/ay-evreleri" target="_blank" rel="noopener">github.com/vevona/ay-evreleri</a> (MIT)`;
+const UI = {
+  tr: {
+    docTitle: "Ay'ın Evreleri",
+    eyebrow: '5. Sınıf Fen Bilimleri · Güneş, Dünya ve Ay',
+    modeGroup: 'Bölüm', modeAy: "Ay'ın Evreleri", modeSys: 'Güneş Sistemi',
+    titleAy: "Ay'ın <span>Evreleri</span>", titleSys: 'Güneş <span>Sistemi</span>',
+    subAy: "Dünya Güneş'in, Ay da Dünya'nın etrafında dolanıyor. Ay'ın görünüşü her gün biraz değişir.",
+    subSys: "Sekiz gezegen Güneş'in etrafında dolanıyor. Bir gezegen seç, uydularıyla birlikte yakından incele.",
+    viewGroup: 'Kamera görünümü', near: 'Yakın', top: 'Üstten',
+    rings: 'Yarım küre sınırları', labels: 'Evre adları', rays: 'Güneş ışınları',
+    legendLit: "Güneş'in aydınlattığı yarı", legendSeen: "Dünya'dan görülen yarı",
+    orbits: 'Yörüngeler', names: 'Adlar',
+    speedTitle: 'Zamanın akış hızı (klavye: ↑ ↓, çift tıkla: varsayılan)', speedAria: 'Zamanın akış hızı',
+    speedVal: t => `1 saniyede ${t} geçer`, fast: 'Hızlı', slow: 'Yavaş', perSec: '1 sn =',
+    phasesNav: "Ay'ın evreleri", prevPhase: 'Önceki evre', nextPhase: 'Sonraki evre',
+    bodiesNav: 'Gök cisimleri', prevBody: 'Önceki gök cismi', nextBody: 'Sonraki gök cismi',
+    playOn: 'Zamanı durdur', playOff: 'Zamanı akıt',
+    hintAy: '<kbd>←</kbd> <kbd>→</kbd> evreler arasında gez <span class="opt">· <kbd>Boşluk</kbd> zamanı akıt / durdur · <kbd>↑</kbd> <kbd>↓</kbd> hız · fareyle sürükleyip döndür</span>',
+    hintSys: '<kbd>←</kbd> <kbd>→</kbd> gezegenler arasında gez <span class="opt">· <kbd>Esc</kbd> geri · <kbd>Boşluk</kbd> zamanı durdur · <kbd>↑</kbd> <kbd>↓</kbd> hız · tekerlekle yaklaş</span>',
+    loading: 'Uzay hazırlanıyor…',
+    fromEarth: "Dünya'dan bakınca", hemi: "Kuzey Yarım Küre'den görünüş", insetAria: "Ay'ın Dünya'dan görünüşü",
+    insetNote: "Ay'ın karanlık yarısı bize dönük. Gökyüzünde göremeyiz.",
+    litLabel: 'Bize aydınlık görünen kısım', ageLabel: "Yeni Ay'dan bu yana geçen süre",
+    pct: n => '%' + n, age: s => s + ' gün', spin: n => `Bu sürede Dünya kendi etrafında ${n} kez döndü.`,
+    phaseStep: k => `Evre ${k} / 8`, where: 'Ay nerede?', when: 'Ne zaman görülür?', know: 'Biliyor musun?',
+    footnote: `Uzaklıklar ve büyüklükler gerçek ölçekte değildir: gök cisimleri rahat görülsün diye büyütüldü, aralarındaki mesafeler kısaltıldı. Ay'ın görünüşü Türkiye'nin de bulunduğu Kuzey Yarım Küre'ye göredir. Dokular: ${SRC_LINKS}. Açık kaynak: ${REPO_LINK}.`,
+    sun: 'Güneş', light: 'Güneş ışığı ➝', allSystem: 'Tüm sistem', allSolar: 'Tüm Güneş Sistemi',
+    planetsH: 'Gezegenler', moonsH: 'Uyduları', noMoonsH: 'Uydusu', otherMoons: 'Diğer uyduları',
+    ctaPhases: "Ay'ın evrelerini incele ›", moonOf: p => `${tx(p).gen} uydusu`,
+    statLabels: ["Güneş'e uzaklık", 'Çapı', 'Kendi etrafında dönüş', 'Güneş etrafında dolanma', 'Sıcaklık', 'Uydu sayısı'],
+    moonStatLabels: ['Çapı', 'Gezegene uzaklık', 'Gezegen etrafında dolanma', 'Gezegeni'],
+    moonsCount: c => c === '0' ? 'Uydusu yok' : c + ' uydu',
+    dec: ',', units: { min: 'dk', hour: 'saat', day: 'gün', month: 'ay', year: 'yıl' },
+  },
+  en: {
+    docTitle: 'Moon Phases & Solar System',
+    eyebrow: 'Grade 5 Science · The Sun, the Earth and the Moon',
+    modeGroup: 'Section', modeAy: 'Moon Phases', modeSys: 'Solar System',
+    titleAy: 'Moon <span>Phases</span>', titleSys: 'Solar <span>System</span>',
+    subAy: 'The Earth goes around the Sun, and the Moon goes around the Earth. The Moon looks a little different every day.',
+    subSys: 'Eight planets orbit the Sun. Pick a planet and explore it up close with its moons.',
+    viewGroup: 'Camera view', near: 'Close', top: 'Top',
+    rings: 'Hemisphere edges', labels: 'Phase names', rays: 'Sunlight',
+    legendLit: 'Half lit by the Sun', legendSeen: 'Half seen from Earth',
+    orbits: 'Orbits', names: 'Names',
+    speedTitle: 'Speed of time (keys: ↑ ↓, double-click: default)', speedAria: 'Speed of time',
+    speedVal: t => `${t} pass every second`, fast: 'Fast', slow: 'Slow', perSec: '1 sec =',
+    phasesNav: 'Moon phases', prevPhase: 'Previous phase', nextPhase: 'Next phase',
+    bodiesNav: 'Solar System objects', prevBody: 'Previous object', nextBody: 'Next object',
+    playOn: 'Stop time', playOff: 'Start time',
+    hintAy: '<kbd>←</kbd> <kbd>→</kbd> move between phases <span class="opt">· <kbd>Space</kbd> start / stop time · <kbd>↑</kbd> <kbd>↓</kbd> speed · drag to rotate</span>',
+    hintSys: '<kbd>←</kbd> <kbd>→</kbd> move between planets <span class="opt">· <kbd>Esc</kbd> back · <kbd>Space</kbd> stop time · <kbd>↑</kbd> <kbd>↓</kbd> speed · scroll to zoom</span>',
+    loading: 'Getting space ready…',
+    fromEarth: 'As seen from Earth', hemi: 'View from the Northern Hemisphere', insetAria: 'The Moon as seen from Earth',
+    insetNote: "The Moon's dark half faces us. We can't see it in the sky.",
+    litLabel: 'Part that looks lit to us', ageLabel: 'Time since New Moon',
+    pct: n => n + '%', age: s => s + ' days', spin: n => `In this time the Earth spun around ${n} time${n === 1 ? '' : 's'}.`,
+    phaseStep: k => `Phase ${k} / 8`, where: 'Where is the Moon?', when: 'When can we see it?', know: 'Did you know?',
+    footnote: `Distances and sizes are not to scale: objects are enlarged so they are easy to see, and the distances between them are shortened. The Moon is shown as seen from the Northern Hemisphere. Textures: ${SRC_LINKS}. Open source: ${REPO_LINK}.`,
+    sun: 'Sun', light: 'Sunlight ➝', allSystem: 'Whole system', allSolar: 'Whole Solar System',
+    planetsH: 'Planets', moonsH: 'Moons', noMoonsH: 'Moons', otherMoons: 'Other moons',
+    ctaPhases: "Explore the Moon's phases ›", moonOf: p => `Moon of ${tx(p).name}`,
+    statLabels: ['Distance from the Sun', 'Diameter', 'Spin (one day)', 'Orbit (one year)', 'Temperature', 'Moons'],
+    moonStatLabels: ['Diameter', 'Distance from planet', 'Orbit around planet', 'Planet'],
+    moonsCount: c => c === '0' ? 'No moons' : c + (c === '1' ? ' moon' : ' moons'),
+    dec: '.', units: { min: 'min', hour: ['hour', 'hours'], day: ['day', 'days'], month: ['month', 'months'], year: ['year', 'years'] },
+  },
+};
+const HASH = location.hash.slice(1);
+let lang = (() => {
+  const q = new URLSearchParams(location.search).get('lang');
+  if (q === 'tr' || q === 'en') return q;
+  if (HASH === 'tr' || HASH === 'en') return HASH;
+  try { const s = localStorage.getItem('ay-evreleri-lang'); if (s === 'tr' || s === 'en') return s; } catch (e) { /* depolama kapalı olabilir */ }
+  return (navigator.language || 'tr').toLowerCase().startsWith('tr') ? 'tr' : 'en';
+})();
+const U = () => UI[lang];
+const tx = o => o.t[lang];
+
 /* ================= Evre bilgileri ================= */
 const PHASES = [
-  { name: 'Yeni Ay', day: '1. gün',
-    desc: "Ay'ın Güneş'e bakan yarısı her zaman aydınlıktır. Yeni Ay'da bu aydınlık yarı tamamen Güneş'e dönüktür, bize ise karanlık yarısı bakar. Bu yüzden Ay'ı gökyüzünde göremeyiz.",
-    where: "Güneş ile Dünya'nın arasında.",
-    sky: "Göremeyiz. Ay gündüz, Güneş ile birlikte gökyüzündedir.",
-    fact: "Ay kendi ışığını üretmez. Bir ayna gibi Güneş'ten gelen ışığı yansıtır." },
-  { name: 'Hilal', tag: 'Büyüyen', day: '≈ 4. gün',
-    desc: "Ay, Dünya'nın etrafında dolanmaya devam ettikçe aydınlık yarısının küçük bir parçasını görmeye başlarız. Gökyüzünde sağ tarafı parlak, ince bir yay gibi görünür.",
-    where: "Yörüngesinde Güneş'in önünden ayrılmaya başladı.",
-    sky: "Akşamları, Güneş battıktan hemen sonra batı ufkunda.",
-    fact: "Hilal evresinde Ay'ın karanlık kısmı bazen çok soluk görünür. Bunun sebebi Dünya'dan yansıyan Güneş ışığıdır." },
-  { name: 'İlk Dördün', day: '≈ 7. gün',
-    desc: "Güneş ışığı Ay'a yandan gelir. Ay'ın aydınlık yarısının ancak yarısını görürüz. Bu yüzden Ay'ın sağ yarısı parlak, yarım daire şeklinde görünür.",
-    where: "Dünya etrafındaki turunun dörtte birini tamamladı.",
-    sky: "Öğle vakti doğar; akşam ve gece yarısına kadar görülür.",
-    fact: "Adı, Ay'ın yörüngesinin dörtte birinde olmasından gelir. \"Dördün\" dörtte bir demektir." },
-  { name: 'Şişkin Ay', tag: 'Büyüyen', day: '≈ 11. gün',
-    desc: "Aydınlık kısım yarımdan büyüktür ve her gece biraz daha büyür. Ay, dolunaya doğru adım adım şişkinleşir.",
-    where: "Dünya'nın, Güneş'e göre arka tarafına yaklaşıyor.",
-    sky: "Öğleden sonra doğar, gecenin büyük bölümünde görülür.",
-    fact: "Ay'ın evreleri Dünya'nın gölgesi yüzünden oluşmaz! Evreler, Ay'ın aydınlık yarısını hangi açıdan gördüğümüze bağlıdır." },
-  { name: 'Dolunay', day: '≈ 15. gün',
-    desc: "Ay'ın Güneş'e bakan aydınlık yarısının tamamı bize dönüktür. Bu yüzden Ay gökyüzünde tam ve parlak bir daire gibi görünür.",
-    where: "Dünya, Güneş ile Ay'ın arasında.",
-    sky: "Güneş batarken doğar, bütün gece görülür, Güneş doğarken batar.",
-    fact: "Bazı dolunaylarda Ay, Dünya'nın gölgesine girer. Buna Ay tutulması denir. Ay'ın yörüngesi biraz eğik olduğu için bu her ay olmaz." },
-  { name: 'Şişkin Ay', tag: 'Küçülen', day: '≈ 19. gün',
-    desc: "Aydınlık kısım hâlâ yarımdan büyüktür ama her gece biraz küçülür. Artık Ay'ın sol tarafı parlaktır.",
-    where: "Yörüngesinde dolunay noktasını geçti.",
-    sky: "Akşam geç saatlerde doğar, sabaha kadar görülür.",
-    fact: "Ay'ın hep aynı yüzünü görürüz. Çünkü Ay, Dünya'nın etrafında bir tur dolanırken kendi etrafında da bir kez döner." },
-  { name: 'Son Dördün', day: '≈ 22. gün',
-    desc: "Güneş ışığı yine Ay'a yandan gelir ama bu kez öbür taraftan. Ay'ın sol yarısı parlaktır ve yine yarım daire şeklinde görünür.",
-    where: "Dünya etrafındaki turunun dörtte üçünü tamamladı.",
-    sky: "Gece yarısı doğar; sabah gökyüzünde, hatta gündüz görülebilir.",
-    fact: "İlk Dördün ile Son Dördün aynı büyüklükte görünür. Aralarındaki tek fark, parlak tarafın yönüdür." },
-  { name: 'Hilal', tag: 'Küçülen', day: '≈ 26. gün',
-    desc: "Aydınlık kısım iyice incelir ve Ay sol tarafı parlak, ince bir yay gibi görünür. Birkaç gün sonra yeniden Yeni Ay olur ve döngü baştan başlar.",
-    where: "Güneş ile Dünya'nın arasına geri dönüyor.",
-    sky: "Sabahları, Güneş doğmadan önce doğu ufkunda.",
-    fact: "Bir Yeni Ay'dan ötekine yaklaşık 29,5 gün geçer. Takvimlerdeki \"ay\" kelimesi de buradan gelir." },
+  { tr: { name: 'Yeni Ay', day: '1. gün',
+      desc: "Ay'ın Güneş'e bakan yarısı her zaman aydınlıktır. Yeni Ay'da bu aydınlık yarı tamamen Güneş'e dönüktür, bize ise karanlık yarısı bakar. Bu yüzden Ay'ı gökyüzünde göremeyiz.",
+      where: "Güneş ile Dünya'nın arasında.",
+      sky: "Göremeyiz. Ay gündüz, Güneş ile birlikte gökyüzündedir.",
+      fact: "Ay kendi ışığını üretmez. Bir ayna gibi Güneş'ten gelen ışığı yansıtır." },
+    en: { name: 'New Moon', day: 'day 1',
+      desc: 'The half of the Moon that faces the Sun is always lit. At New Moon this lit half faces the Sun completely, and the dark half faces us. That is why we cannot see the Moon in the sky.',
+      where: 'Between the Sun and the Earth.',
+      sky: "We can't see it. The Moon is in the daytime sky, together with the Sun.",
+      fact: 'The Moon does not make its own light. Like a mirror, it reflects light from the Sun.' } },
+  { tr: { name: 'Hilal', tag: 'Büyüyen', day: '≈ 4. gün',
+      desc: "Ay, Dünya'nın etrafında dolanmaya devam ettikçe aydınlık yarısının küçük bir parçasını görmeye başlarız. Gökyüzünde sağ tarafı parlak, ince bir yay gibi görünür.",
+      where: "Yörüngesinde Güneş'in önünden ayrılmaya başladı.",
+      sky: "Akşamları, Güneş battıktan hemen sonra batı ufkunda.",
+      fact: "Hilal evresinde Ay'ın karanlık kısmı bazen çok soluk görünür. Bunun sebebi Dünya'dan yansıyan Güneş ışığıdır." },
+    en: { name: 'Crescent', tag: 'Waxing', day: '≈ day 4',
+      desc: 'As the Moon keeps moving around the Earth, we start to see a small part of its lit half. In the sky it looks like a thin curve, bright on the right side.',
+      where: 'It has started to move away from in front of the Sun.',
+      sky: 'In the evening, low in the west just after sunset.',
+      fact: 'During the crescent phase the dark part of the Moon sometimes glows faintly. This is sunlight reflected from the Earth, called earthshine.' } },
+  { tr: { name: 'İlk Dördün', day: '≈ 7. gün',
+      desc: "Güneş ışığı Ay'a yandan gelir. Ay'ın aydınlık yarısının ancak yarısını görürüz. Bu yüzden Ay'ın sağ yarısı parlak, yarım daire şeklinde görünür.",
+      where: "Dünya etrafındaki turunun dörtte birini tamamladı.",
+      sky: "Öğle vakti doğar; akşam ve gece yarısına kadar görülür.",
+      fact: "Adı, Ay'ın yörüngesinin dörtte birinde olmasından gelir. \"Dördün\" dörtte bir demektir." },
+    en: { name: 'First Quarter', day: '≈ day 7',
+      desc: 'Sunlight hits the Moon from the side. We see only half of its lit half, so the right half of the Moon is bright and it looks like a half circle.',
+      where: 'It has completed a quarter of its trip around the Earth.',
+      sky: 'It rises around noon and can be seen in the evening until about midnight.',
+      fact: "It is called a quarter because the Moon is a quarter of the way around its orbit, even though we see half of its face lit." } },
+  { tr: { name: 'Şişkin Ay', tag: 'Büyüyen', day: '≈ 11. gün',
+      desc: "Aydınlık kısım yarımdan büyüktür ve her gece biraz daha büyür. Ay, dolunaya doğru adım adım şişkinleşir.",
+      where: "Dünya'nın, Güneş'e göre arka tarafına yaklaşıyor.",
+      sky: "Öğleden sonra doğar, gecenin büyük bölümünde görülür.",
+      fact: "Ay'ın evreleri Dünya'nın gölgesi yüzünden oluşmaz! Evreler, Ay'ın aydınlık yarısını hangi açıdan gördüğümüze bağlıdır." },
+    en: { name: 'Gibbous', tag: 'Waxing', day: '≈ day 11',
+      desc: 'More than half of the Moon looks lit, and the lit part grows a little every night. Step by step, the Moon gets rounder toward Full Moon.',
+      where: 'It is getting close to the side of the Earth away from the Sun.',
+      sky: 'It rises in the afternoon and can be seen for most of the night.',
+      fact: "The phases are NOT caused by the Earth's shadow! They depend on the angle from which we see the Moon's lit half." } },
+  { tr: { name: 'Dolunay', day: '≈ 15. gün',
+      desc: "Ay'ın Güneş'e bakan aydınlık yarısının tamamı bize dönüktür. Bu yüzden Ay gökyüzünde tam ve parlak bir daire gibi görünür.",
+      where: "Dünya, Güneş ile Ay'ın arasında.",
+      sky: "Güneş batarken doğar, bütün gece görülür, Güneş doğarken batar.",
+      fact: "Bazı dolunaylarda Ay, Dünya'nın gölgesine girer. Buna Ay tutulması denir. Ay'ın yörüngesi biraz eğik olduğu için bu her ay olmaz." },
+    en: { name: 'Full Moon', day: '≈ day 15',
+      desc: 'The whole lit half of the Moon faces us. That is why the Moon looks like a full, bright circle in the sky.',
+      where: 'The Earth is between the Sun and the Moon.',
+      sky: 'It rises at sunset, can be seen all night and sets at sunrise.',
+      fact: "At some full moons the Moon passes into the Earth's shadow. This is called a lunar eclipse. Because the Moon's orbit is slightly tilted, it does not happen every month." } },
+  { tr: { name: 'Şişkin Ay', tag: 'Küçülen', day: '≈ 19. gün',
+      desc: "Aydınlık kısım hâlâ yarımdan büyüktür ama her gece biraz küçülür. Artık Ay'ın sol tarafı parlaktır.",
+      where: "Yörüngesinde dolunay noktasını geçti.",
+      sky: "Akşam geç saatlerde doğar, sabaha kadar görülür.",
+      fact: "Ay'ın hep aynı yüzünü görürüz. Çünkü Ay, Dünya'nın etrafında bir tur dolanırken kendi etrafında da bir kez döner." },
+    en: { name: 'Gibbous', tag: 'Waning', day: '≈ day 19',
+      desc: 'More than half of the Moon still looks lit, but the lit part gets a little smaller every night. Now the left side is bright.',
+      where: 'It has passed the Full Moon point of its orbit.',
+      sky: 'It rises late in the evening and can be seen until morning.',
+      fact: 'We always see the same side of the Moon. That is because the Moon spins once on its axis in the same time it takes to go once around the Earth.' } },
+  { tr: { name: 'Son Dördün', day: '≈ 22. gün',
+      desc: "Güneş ışığı yine Ay'a yandan gelir ama bu kez öbür taraftan. Ay'ın sol yarısı parlaktır ve yine yarım daire şeklinde görünür.",
+      where: "Dünya etrafındaki turunun dörtte üçünü tamamladı.",
+      sky: "Gece yarısı doğar; sabah gökyüzünde, hatta gündüz görülebilir.",
+      fact: "İlk Dördün ile Son Dördün aynı büyüklükte görünür. Aralarındaki tek fark, parlak tarafın yönüdür." },
+    en: { name: 'Last Quarter', day: '≈ day 22',
+      desc: 'Sunlight hits the Moon from the side again, but this time from the other side. The left half is bright, and it looks like a half circle again.',
+      where: 'It has completed three quarters of its trip around the Earth.',
+      sky: 'It rises around midnight and can be seen in the morning sky, sometimes even in daylight.',
+      fact: 'The First Quarter and the Last Quarter look the same size. The only difference is which side is bright.' } },
+  { tr: { name: 'Hilal', tag: 'Küçülen', day: '≈ 26. gün',
+      desc: "Aydınlık kısım iyice incelir ve Ay sol tarafı parlak, ince bir yay gibi görünür. Birkaç gün sonra yeniden Yeni Ay olur ve döngü baştan başlar.",
+      where: "Güneş ile Dünya'nın arasına geri dönüyor.",
+      sky: "Sabahları, Güneş doğmadan önce doğu ufkunda.",
+      fact: "Bir Yeni Ay'dan ötekine yaklaşık 29,5 gün geçer. Takvimlerdeki \"ay\" kelimesi de buradan gelir." },
+    en: { name: 'Crescent', tag: 'Waning', day: '≈ day 26',
+      desc: 'The lit part gets very thin, and the Moon looks like a thin curve, bright on the left side. A few days later it is New Moon again and the cycle starts over.',
+      where: 'It is moving back between the Sun and the Earth.',
+      sky: 'In the morning, low in the east before sunrise.',
+      fact: 'About 29.5 days pass from one New Moon to the next. The word “month” comes from the word “Moon”!' } },
 ];
 
 /* ================= Güneş Sistemi bilgileri ================= */
 // R: sahnedeki yarıçap, dist: Güneş'e uzaklık, period: Güneş etrafında dolanma (gün),
 // rot: kendi etrafında dönüş (gün), tilt: eksen eğikliği (°), speed: bu gezegene bakarken zamanın varsayılan hızı (gün/sn)
+// t.*.stats: [Güneş'e uzaklık, çap, kendi etrafında dönüş, Güneş etrafında dolanma, sıcaklık]
 const SUN_INFO = {
-  key: 'gunes', kind: 'sun', name: 'Güneş', short: 'Güneş', color: '#ffc96b', sub: 'Tüm sistem',
-  type: 'Yıldız · Sistemin merkezi', title: 'Güneş Sistemi',
-  lead: "Güneş Sistemi; merkezdeki Güneş, onun etrafında dolanan 8 gezegen, gezegenlerin uyduları, cüce gezegenler, asteroitler ve kuyruklu yıldızlardan oluşur. Güneş bir yıldızdır ve ışığını kendisi üretir.",
-  stats: [['Güneş\'in çapı', '1,39 milyon km'], ['Yüzey sıcaklığı', '5.500 °C'], ['Dünya\'ya uzaklık', '150 milyon km'], ['Gezegen sayısı', '8']],
-  fact: "Güneş, Güneş Sistemi'ndeki bütün maddenin yaklaşık %99,8'ini tek başına oluşturur. İçine 1,3 milyon Dünya sığabilir.",
-  note: "Merkür, Venüs, Dünya ve Mars kayalık (karasal) gezegenlerdir. Jüpiter ve Satürn gaz devi, Uranüs ve Neptün buz devidir. Mars ile Jüpiter arasında Asteroit Kuşağı bulunur.",
+  key: 'gunes', kind: 'sun', color: '#ffc96b',
+  t: {
+    tr: { type: 'Yıldız · Sistemin merkezi', title: 'Güneş Sistemi',
+      lead: "Güneş Sistemi; merkezdeki Güneş, onun etrafında dolanan 8 gezegen, gezegenlerin uyduları, cüce gezegenler, asteroitler ve kuyruklu yıldızlardan oluşur. Güneş bir yıldızdır ve ışığını kendisi üretir.",
+      stats: [["Güneş'in çapı", '1,39 milyon km'], ['Yüzey sıcaklığı', '5.500 °C'], ["Dünya'ya uzaklık", '150 milyon km'], ['Gezegen sayısı', '8']],
+      fact: "Güneş, Güneş Sistemi'ndeki bütün maddenin yaklaşık %99,8'ini tek başına oluşturur. İçine 1,3 milyon Dünya sığabilir.",
+      note: "Merkür, Venüs, Dünya ve Mars kayalık (karasal) gezegenlerdir. Jüpiter ve Satürn gaz devi, Uranüs ve Neptün buz devidir. Mars ile Jüpiter arasında Asteroit Kuşağı bulunur." },
+    en: { type: 'Star · Center of the system', title: 'Solar System',
+      lead: 'The Solar System is made of the Sun at its center, the 8 planets that orbit it, their moons, dwarf planets, asteroids and comets. The Sun is a star and makes its own light.',
+      stats: [["Sun's diameter", '1.39 million km'], ['Surface temperature', '5,500 °C'], ['Distance to Earth', '150 million km'], ['Number of planets', '8']],
+      fact: 'The Sun alone holds about 99.8% of all the matter in the Solar System. About 1.3 million Earths could fit inside it.',
+      note: 'Mercury, Venus, Earth and Mars are rocky (terrestrial) planets. Jupiter and Saturn are gas giants; Uranus and Neptune are ice giants. The Asteroid Belt lies between Mars and Jupiter.' },
+  },
 };
 
 const PLANETS = [
-  { key: 'merkur', name: 'Merkür', gen: "Merkür'ün", type: 'Karasal gezegen', color: '#b9b2aa', tex: 'mercury.jpg',
+  { key: 'merkur', color: '#b9b2aa', tex: 'mercury.jpg', moonCount: '0',
     R: 1.0, dist: 30, period: 87.97, rot: 58.65, tilt: 0.03, a0: 2.1, speed: 4, view: 4.5, bright: 1.3,
-    stats: [['Güneş\'e uzaklık', '58 milyon km'], ['Çapı', '4.879 km'], ['Kendi etrafında dönüş', '59 Dünya günü'], ['Güneş etrafında dolanma', '88 gün'], ['Sıcaklık', '−180 / 430 °C'], ['Uydu sayısı', '0']],
-    lead: "Güneş'e en yakın ve en küçük gezegen. Havası (atmosferi) yok denecek kadar az olduğu için gündüzleri çok sıcak, geceleri çok soğuktur. Yüzeyi Ay'ınki gibi kraterlerle kaplıdır.",
-    fact: "Merkür'de Güneş'in bir doğuşundan ertesi doğuşuna 176 Dünya günü geçer. Yani orada bir gün, 88 günlük bir yıldan daha uzundur!",
-    noMoons: "Merkür'ün hiç uydusu yoktur.", moons: [] },
-  { key: 'venus', name: 'Venüs', gen: "Venüs'ün", type: 'Karasal gezegen', color: '#e6c487', tex: 'venus.jpg',
+    t: {
+      tr: { name: 'Merkür', gen: "Merkür'ün", type: 'Karasal gezegen',
+        stats: ['58 milyon km', '4.879 km', '59 Dünya günü', '88 gün', '−180 / 430 °C'],
+        lead: "Güneş'e en yakın ve en küçük gezegen. Havası (atmosferi) yok denecek kadar az olduğu için gündüzleri çok sıcak, geceleri çok soğuktur. Yüzeyi Ay'ınki gibi kraterlerle kaplıdır.",
+        fact: "Merkür'de Güneş'in bir doğuşundan ertesi doğuşuna 176 Dünya günü geçer. Yani orada bir gün, 88 günlük bir yıldan daha uzundur!",
+        noMoons: "Merkür'ün hiç uydusu yoktur." },
+      en: { name: 'Mercury', type: 'Rocky planet',
+        stats: ['58 million km', '4,879 km', '59 Earth days', '88 days', '−180 / 430 °C'],
+        lead: 'The closest planet to the Sun and the smallest one. It has almost no air (atmosphere), so its days are very hot and its nights are very cold. Its surface is covered with craters, like the Moon.',
+        fact: 'On Mercury, 176 Earth days pass from one sunrise to the next. So a day there is longer than its 88-day year!',
+        noMoons: 'Mercury has no moons.' },
+    }, moons: [] },
+  { key: 'venus', color: '#e6c487', tex: 'venus.jpg', moonCount: '0',
     R: 2.3, dist: 45, period: 224.7, rot: 243.0, tilt: 177.4, a0: 4.0, speed: 8, view: 7, bright: 1.0,
     atmo: [1.05, [1.0, 0.85, 0.55], 1.1],
-    stats: [['Güneş\'e uzaklık', '108 milyon km'], ['Çapı', '12.104 km'], ['Kendi etrafında dönüş', '243 gün (ters yönde)'], ['Güneş etrafında dolanma', '225 gün'], ['Sıcaklık', '465 °C'], ['Uydu sayısı', '0']],
-    lead: "Boyutu Dünya'ya çok benzer ama kalın bulutlarla kaplıdır. Bu bulutlar ısıyı hapseder; bu yüzden Venüs, Güneş'e daha yakın olan Merkür'den bile sıcaktır.",
-    fact: "Gökyüzünde Ay'dan sonra en parlak görünen gök cismidir. Halk arasında \"Çoban Yıldızı\" denir ama aslında yıldız değil, gezegendir.",
-    noMoons: "Venüs'ün hiç uydusu yoktur.", moons: [] },
-  { key: 'dunya', name: 'Dünya', gen: "Dünya'nın", type: 'Karasal gezegen', color: '#4f8fd8', special: true,
+    t: {
+      tr: { name: 'Venüs', gen: "Venüs'ün", type: 'Karasal gezegen',
+        stats: ['108 milyon km', '12.104 km', '243 gün (ters yönde)', '225 gün', '465 °C'],
+        lead: "Boyutu Dünya'ya çok benzer ama kalın bulutlarla kaplıdır. Bu bulutlar ısıyı hapseder; bu yüzden Venüs, Güneş'e daha yakın olan Merkür'den bile sıcaktır.",
+        fact: "Gökyüzünde Ay'dan sonra en parlak görünen gök cismidir. Halk arasında \"Çoban Yıldızı\" denir ama aslında yıldız değil, gezegendir.",
+        noMoons: "Venüs'ün hiç uydusu yoktur." },
+      en: { name: 'Venus', type: 'Rocky planet',
+        stats: ['108 million km', '12,104 km', '243 days (backwards)', '225 days', '465 °C'],
+        lead: 'It is almost the same size as the Earth, but it is covered in thick clouds. These clouds trap heat, so Venus is even hotter than Mercury, which is closer to the Sun.',
+        fact: 'After the Moon, it is the brightest object in the night sky. People call it the “Morning Star” or “Evening Star”, but it is a planet, not a star.',
+        noMoons: 'Venus has no moons.' },
+    }, moons: [] },
+  { key: 'dunya', color: '#4f8fd8', special: true, moonCount: '1',
     R: 2.4, dist: 62, period: 365.25, rot: 1, tilt: 23.4, speed: 0.5, view: 12,
-    stats: [['Güneş\'e uzaklık', '150 milyon km'], ['Çapı', '12.742 km'], ['Kendi etrafında dönüş', '24 saat'], ['Güneş etrafında dolanma', '365 gün'], ['Ortalama sıcaklık', '15 °C'], ['Uydu sayısı', '1']],
-    lead: "Üzerinde yaşam olduğu bilinen tek gezegen. Yüzeyinin yaklaşık dörtte üçü sularla kaplıdır. Atmosferi bizi Güneş'in zararlı ışınlarından ve göktaşlarından korur.",
-    fact: "Dünya'nın dönme ekseni 23,5° eğiktir. Mevsimler bu eğiklik sayesinde oluşur.",
-    moons: [{ key: 'ay', name: 'Ay', special: true, r: 1.0, d: '3.474 km', dist: '384.400 km', per: '27,3 gün',
-      desc: "Dünya'nın tek doğal uydusu. Dünya'ya hep aynı yüzünü gösterir ve evreleri gece gökyüzünün en tanıdık görüntüsüdür." }] },
-  { key: 'mars', name: 'Mars', gen: "Mars'ın", type: 'Karasal gezegen', color: '#d0643a', tex: 'mars.jpg',
+    t: {
+      tr: { name: 'Dünya', gen: "Dünya'nın", type: 'Karasal gezegen',
+        stats: ['150 milyon km', '12.742 km', '24 saat', '365 gün', '15 °C (ortalama)'],
+        lead: "Üzerinde yaşam olduğu bilinen tek gezegen. Yüzeyinin yaklaşık dörtte üçü sularla kaplıdır. Atmosferi bizi Güneş'in zararlı ışınlarından ve göktaşlarından korur.",
+        fact: "Dünya'nın dönme ekseni 23,5° eğiktir. Mevsimler bu eğiklik sayesinde oluşur." },
+      en: { name: 'Earth', type: 'Rocky planet',
+        stats: ['150 million km', '12,742 km', '24 hours', '365 days', '15 °C (average)'],
+        lead: "The only planet known to have life. About three quarters of its surface is covered with water. Its atmosphere protects us from the Sun's harmful rays and from meteors.",
+        fact: "The Earth's axis is tilted by 23.5°. This tilt is what gives us the seasons." },
+    },
+    moons: [{ key: 'ay', special: true, r: 1.0, t: {
+      tr: { name: 'Ay', d: '3.474 km', dist: '384.400 km', per: '27,3 gün',
+        desc: "Dünya'nın tek doğal uydusu. Dünya'ya hep aynı yüzünü gösterir ve evreleri gece gökyüzünün en tanıdık görüntüsüdür." },
+      en: { name: 'Moon', d: '3,474 km', dist: '384,400 km', per: '27.3 days',
+        desc: "The Earth's only natural moon. It always shows the same side to the Earth, and its phases are the most familiar sight in the night sky." } } }] },
+  { key: 'mars', color: '#d0643a', tex: 'mars.jpg', moonCount: '2',
     R: 1.5, dist: 85, period: 687, rot: 1.026, tilt: 25.2, a0: 1.2, speed: 0.06, view: 5.5, bright: 1.25,
     atmo: [1.035, [1.0, 0.55, 0.35], 0.6],
-    stats: [['Güneş\'e uzaklık', '228 milyon km'], ['Çapı', '6.779 km'], ['Kendi etrafında dönüş', '24 saat 37 dk'], ['Güneş etrafında dolanma', '687 gün'], ['Ortalama sıcaklık', '−63 °C'], ['Uydu sayısı', '2']],
-    lead: "Kızıl Gezegen olarak bilinir; rengini toprağındaki paslı demirden alır. Kutuplarında buzullar vardır. Güneş Sistemi'nin en yüksek yanardağı Olimpos Dağı da Mars'tadır.",
-    fact: "Mars'ta bir gün Dünya'dakine çok yakındır: 24 saat 37 dakika. Ama bir yılı neredeyse iki Dünya yılı sürer.",
+    t: {
+      tr: { name: 'Mars', gen: "Mars'ın", type: 'Karasal gezegen',
+        stats: ['228 milyon km', '6.779 km', '24 saat 37 dk', '687 gün', '−63 °C'],
+        lead: "Kızıl Gezegen olarak bilinir; rengini toprağındaki paslı demirden alır. Kutuplarında buzullar vardır. Güneş Sistemi'nin en yüksek yanardağı Olimpos Dağı da Mars'tadır.",
+        fact: "Mars'ta bir gün Dünya'dakine çok yakındır: 24 saat 37 dakika. Ama bir yılı neredeyse iki Dünya yılı sürer." },
+      en: { name: 'Mars', type: 'Rocky planet',
+        stats: ['228 million km', '6,779 km', '24 h 37 min', '687 days', '−63 °C'],
+        lead: 'Known as the Red Planet, it gets its color from rusty iron in its soil. It has ice caps at its poles. The tallest volcano in the Solar System, Olympus Mons, is on Mars.',
+        fact: 'A day on Mars is very close to ours: 24 hours and 37 minutes. But a year there lasts almost two Earth years.' },
+    },
     moons: [
-      { key: 'fobos', name: 'Fobos', r: 0.22, orbit: 2.9, period: 0.319, shape: true, tint: [0.62, 0.55, 0.48], d: '22 km', dist: '9.376 km', per: '7 saat 39 dk',
-        desc: "Mars'ın büyük uydusu. Mars'a o kadar yakındır ki bir günde üç kez etrafında dolanır. Yavaş yavaş Mars'a yaklaşıyor." },
-      { key: 'deimos', name: 'Deimos', r: 0.15, orbit: 4.6, period: 1.263, shape: true, tint: [0.72, 0.65, 0.57], d: '12 km', dist: '23.460 km', per: '30 saat',
-        desc: "Mars'ın küçük uydusu. Patates şeklindedir ve sadece 12 km genişliğindedir; bir şehir kadar küçüktür." }] },
-  { key: 'jupiter', name: 'Jüpiter', gen: "Jüpiter'in", type: 'Gaz devi', color: '#d9b48a', tex: 'jupiter.jpg',
+      { key: 'fobos', r: 0.22, orbit: 2.9, period: 0.319, shape: true, tint: [0.62, 0.55, 0.48], t: {
+        tr: { name: 'Fobos', d: '22 km', dist: '9.376 km', per: '7 saat 39 dk',
+          desc: "Mars'ın büyük uydusu. Mars'a o kadar yakındır ki bir günde üç kez etrafında dolanır. Yavaş yavaş Mars'a yaklaşıyor." },
+        en: { name: 'Phobos', d: '22 km', dist: '9,376 km', per: '7 h 39 min',
+          desc: 'The larger moon of Mars. It is so close to Mars that it goes around the planet three times a day. It is slowly getting closer to Mars.' } } },
+      { key: 'deimos', r: 0.15, orbit: 4.6, period: 1.263, shape: true, tint: [0.72, 0.65, 0.57], t: {
+        tr: { name: 'Deimos', d: '12 km', dist: '23.460 km', per: '30 saat',
+          desc: "Mars'ın küçük uydusu. Patates şeklindedir ve sadece 12 km genişliğindedir; bir şehir kadar küçüktür." },
+        en: { name: 'Deimos', d: '12 km', dist: '23,460 km', per: '30 hours',
+          desc: 'The smaller moon of Mars. It is shaped like a potato and is only 12 km across, about the size of a city.' } } }] },
+  { key: 'jupiter', color: '#d9b48a', tex: 'jupiter.jpg', moonCount: '95+',
     R: 6.2, dist: 140, period: 4332.6, rot: 0.4135, tilt: 3.1, a0: 3.3, speed: 0.25, view: 22, bright: 1.15,
     atmo: [1.025, [1.0, 0.85, 0.65], 0.7],
-    stats: [['Güneş\'e uzaklık', '778 milyon km'], ['Çapı', '139.820 km'], ['Kendi etrafında dönüş', '10 saat'], ['Güneş etrafında dolanma', '12 yıl'], ['Ortalama sıcaklık', '−110 °C'], ['Uydu sayısı', '95+']],
-    lead: "Güneş Sistemi'nin en büyük gezegeni; içine 1.300 Dünya sığabilir. Katı bir yüzeyi yoktur, çoğunlukla hidrojen ve helyum gazından oluşur. Üzerindeki renkli şeritler dev bulut kuşaklarıdır.",
-    fact: "Üzerindeki Büyük Kırmızı Leke, yüzlerce yıldır süren ve Dünya'dan bile büyük bir fırtınadır.",
-    moonsNote: "Jüpiter'in bilinen 95'ten fazla uydusu var. Burada en büyük dördü gösteriliyor; bunları 1610'da Galileo Galilei keşfetti.",
+    t: {
+      tr: { name: 'Jüpiter', gen: "Jüpiter'in", type: 'Gaz devi',
+        stats: ['778 milyon km', '139.820 km', '10 saat', '12 yıl', '−110 °C'],
+        lead: "Güneş Sistemi'nin en büyük gezegeni; içine 1.300 Dünya sığabilir. Katı bir yüzeyi yoktur, çoğunlukla hidrojen ve helyum gazından oluşur. Üzerindeki renkli şeritler dev bulut kuşaklarıdır.",
+        fact: "Üzerindeki Büyük Kırmızı Leke, yüzlerce yıldır süren ve Dünya'dan bile büyük bir fırtınadır.",
+        moonsNote: "Jüpiter'in bilinen 95'ten fazla uydusu var. Burada en büyük dördü gösteriliyor; bunları 1610'da Galileo Galilei keşfetti." },
+      en: { name: 'Jupiter', type: 'Gas giant',
+        stats: ['778 million km', '139,820 km', '10 hours', '12 years', '−110 °C'],
+        lead: 'The largest planet in the Solar System: 1,300 Earths could fit inside it. It has no solid surface and is made mostly of hydrogen and helium gas. Its colorful stripes are giant belts of clouds.',
+        fact: 'Its Great Red Spot is a storm bigger than the Earth that has been raging for hundreds of years.',
+        moonsNote: 'Jupiter has more than 95 known moons. The four largest are shown here; Galileo Galilei discovered them in 1610.' },
+    },
     moons: [
-      { key: 'io', name: 'İo', r: 0.98, orbit: 10.5, period: 1.769, tex: 'io', d: '3.643 km', dist: '421.700 km', per: '1,8 gün',
-        desc: "Güneş Sistemi'nin en çok yanardağı olan gök cismi. Yüzeyi sarı, turuncu ve siyah lekelerle kaplıdır." },
-      { key: 'europa', name: 'Europa', r: 0.88, orbit: 13.5, period: 3.551, tex: 'europa', d: '3.122 km', dist: '671.000 km', per: '3,6 gün',
-        desc: "Buzla kaplıdır. Buzun altında dev bir okyanus olduğu düşünülüyor; bilim insanları burada yaşam izi arıyor." },
-      { key: 'ganimet', name: 'Ganimet', r: 1.3, orbit: 17, period: 7.155, tint: [0.78, 0.73, 0.68], d: '5.268 km', dist: '1,07 milyon km', per: '7,2 gün',
-        desc: "Güneş Sistemi'nin en büyük uydusu. Merkür gezegeninden bile büyüktür." },
-      { key: 'kallisto', name: 'Kallisto', r: 1.21, orbit: 22, period: 16.689, tint: [0.52, 0.48, 0.43], d: '4.821 km', dist: '1,88 milyon km', per: '16,7 gün',
-        desc: "Yüzeyi baştan sona kraterlerle kaplı, çok yaşlı bir uydu." }] },
-  { key: 'saturn', name: 'Satürn', gen: "Satürn'ün", type: 'Gaz devi', color: '#e2cd9a', tex: 'saturn.jpg', ring: 'big',
+      { key: 'io', r: 0.98, orbit: 10.5, period: 1.769, tex: 'io', t: {
+        tr: { name: 'İo', d: '3.643 km', dist: '421.700 km', per: '1,8 gün',
+          desc: "Güneş Sistemi'nin en çok yanardağı olan gök cismi. Yüzeyi sarı, turuncu ve siyah lekelerle kaplıdır." },
+        en: { name: 'Io', d: '3,643 km', dist: '421,700 km', per: '1.8 days',
+          desc: 'The most volcanic object in the Solar System. Its surface is covered with yellow, orange and black spots.' } } },
+      { key: 'europa', r: 0.88, orbit: 13.5, period: 3.551, tex: 'europa', t: {
+        tr: { name: 'Europa', d: '3.122 km', dist: '671.000 km', per: '3,6 gün',
+          desc: "Buzla kaplıdır. Buzun altında dev bir okyanus olduğu düşünülüyor; bilim insanları burada yaşam izi arıyor." },
+        en: { name: 'Europa', d: '3,122 km', dist: '671,000 km', per: '3.6 days',
+          desc: 'It is covered in ice. Scientists think a huge ocean lies under the ice, and they are looking for signs of life there.' } } },
+      { key: 'ganimet', r: 1.3, orbit: 17, period: 7.155, tint: [0.78, 0.73, 0.68], t: {
+        tr: { name: 'Ganimet', d: '5.268 km', dist: '1,07 milyon km', per: '7,2 gün',
+          desc: "Güneş Sistemi'nin en büyük uydusu. Merkür gezegeninden bile büyüktür." },
+        en: { name: 'Ganymede', d: '5,268 km', dist: '1.07 million km', per: '7.2 days',
+          desc: 'The largest moon in the Solar System. It is even bigger than the planet Mercury.' } } },
+      { key: 'kallisto', r: 1.21, orbit: 22, period: 16.689, tint: [0.52, 0.48, 0.43], t: {
+        tr: { name: 'Kallisto', d: '4.821 km', dist: '1,88 milyon km', per: '16,7 gün',
+          desc: "Yüzeyi baştan sona kraterlerle kaplı, çok yaşlı bir uydu." },
+        en: { name: 'Callisto', d: '4,821 km', dist: '1.88 million km', per: '16.7 days',
+          desc: 'A very old moon whose surface is covered with craters from end to end.' } } }] },
+  { key: 'saturn', color: '#e2cd9a', tex: 'saturn.jpg', ring: 'big', moonCount: '270+',
     R: 5.2, dist: 195, period: 10759, rot: 0.444, tilt: 26.7, a0: 5.2, speed: 0.3, view: 24, bright: 1.15,
     atmo: [1.025, [1.0, 0.9, 0.7], 0.6],
-    stats: [['Güneş\'e uzaklık', '1,4 milyar km'], ['Çapı', '116.460 km'], ['Kendi etrafında dönüş', '10,7 saat'], ['Güneş etrafında dolanma', '29 yıl'], ['Ortalama sıcaklık', '−140 °C'], ['Uydu sayısı', '270+']],
-    lead: "Görkemli halkalarıyla tanınan gaz devi. Halkalar buz ve kaya parçalarından oluşur; bu parçaların bazıları kum tanesi, bazıları bir ev büyüklüğündedir.",
-    fact: "Satürn çok hafiftir. Onu içine alacak kadar büyük bir su havuzu olsaydı, Satürn suda yüzerdi!",
-    moonsNote: "Satürn'ün bilinen 270'ten fazla uydusu var; en çok uydusu olan gezegendir. Burada en büyük yedisi gösteriliyor.",
+    t: {
+      tr: { name: 'Satürn', gen: "Satürn'ün", type: 'Gaz devi',
+        stats: ['1,4 milyar km', '116.460 km', '10,7 saat', '29 yıl', '−140 °C'],
+        lead: "Görkemli halkalarıyla tanınan gaz devi. Halkalar buz ve kaya parçalarından oluşur; bu parçaların bazıları kum tanesi, bazıları bir ev büyüklüğündedir.",
+        fact: "Satürn çok hafiftir. Onu içine alacak kadar büyük bir su havuzu olsaydı, Satürn suda yüzerdi!",
+        moonsNote: "Satürn'ün bilinen 270'ten fazla uydusu var; en çok uydusu olan gezegendir. Burada en büyük yedisi gösteriliyor." },
+      en: { name: 'Saturn', type: 'Gas giant',
+        stats: ['1.4 billion km', '116,460 km', '10.7 hours', '29 years', '−140 °C'],
+        lead: 'The gas giant famous for its magnificent rings. The rings are made of pieces of ice and rock; some are as small as grains of sand, others as big as a house.',
+        fact: 'Saturn is very light. If there were a pool of water big enough to hold it, Saturn would float!',
+        moonsNote: 'Saturn has more than 270 known moons, more than any other planet. The seven largest are shown here.' },
+    },
     moons: [
-      { key: 'mimas', name: 'Mimas', r: 0.19, orbit: 13.2, period: 0.942, tint: [0.92, 0.92, 0.92], d: '396 km', dist: '185.500 km', per: '23 saat',
-        desc: "Üzerindeki kocaman krater yüzünden dev bir göze benzer." },
-      { key: 'enceladus', name: 'Enceladus', r: 0.22, orbit: 14.6, period: 1.37, tint: [1.25, 1.27, 1.32], d: '504 km', dist: '238.000 km', per: '1,4 gün',
-        desc: "Güneş Sistemi'nin en parlak cisimlerinden biri. Buzlu yüzeyinden uzaya su fıskiyeleri püskürür." },
-      { key: 'tethys', name: 'Tethys', r: 0.39, orbit: 16.2, period: 1.888, tint: [1.05, 1.05, 1.05], d: '1.062 km', dist: '294.600 km', per: '1,9 gün',
-        desc: "Neredeyse tamamen su buzundan oluşur." },
-      { key: 'dione', name: 'Dione', r: 0.41, orbit: 18.2, period: 2.737, tint: [0.97, 0.96, 0.95], d: '1.123 km', dist: '377.400 km', per: '2,7 gün',
-        desc: "Yüzeyinde parlak buz uçurumları vardır." },
-      { key: 'rhea', name: 'Rhea', r: 0.51, orbit: 21, period: 4.518, tint: [0.95, 0.93, 0.9], d: '1.527 km', dist: '527.100 km', per: '4,5 gün',
-        desc: "Satürn'ün ikinci büyük uydusu; buzlu ve kraterlidir." },
-      { key: 'titan', name: 'Titan', r: 1.28, orbit: 27, period: 15.945, tex: 'titan', d: '5.150 km', dist: '1,22 milyon km', per: '15,9 gün',
-        desc: "Kalın, turuncu bir atmosferi olan tek uydu. Yüzeyinde sıvı metandan göller ve nehirler vardır." },
-      { key: 'iapetus', name: 'İapetus', r: 0.5, orbit: 34, period: 79.32, tex: 'iapetus', d: '1.469 km', dist: '3,56 milyon km', per: '79 gün',
-        desc: "İki renkli uydu: bir yüzü kömür gibi koyu, öbür yüzü kar gibi parlaktır." }] },
-  { key: 'uranus', name: 'Uranüs', gen: "Uranüs'ün", type: 'Buz devi', color: '#9edbe3', tex: 'uranus.jpg', ring: 'thin',
+      { key: 'mimas', r: 0.19, orbit: 13.2, period: 0.942, tint: [0.92, 0.92, 0.92], t: {
+        tr: { name: 'Mimas', d: '396 km', dist: '185.500 km', per: '23 saat', desc: "Üzerindeki kocaman krater yüzünden dev bir göze benzer." },
+        en: { name: 'Mimas', d: '396 km', dist: '185,500 km', per: '23 hours', desc: 'Its huge crater makes it look like a giant eye.' } } },
+      { key: 'enceladus', r: 0.22, orbit: 14.6, period: 1.37, tint: [1.25, 1.27, 1.32], t: {
+        tr: { name: 'Enceladus', d: '504 km', dist: '238.000 km', per: '1,4 gün', desc: "Güneş Sistemi'nin en parlak cisimlerinden biri. Buzlu yüzeyinden uzaya su fıskiyeleri püskürür." },
+        en: { name: 'Enceladus', d: '504 km', dist: '238,000 km', per: '1.4 days', desc: 'One of the brightest objects in the Solar System. Jets of water shoot into space from its icy surface.' } } },
+      { key: 'tethys', r: 0.39, orbit: 16.2, period: 1.888, tint: [1.05, 1.05, 1.05], t: {
+        tr: { name: 'Tethys', d: '1.062 km', dist: '294.600 km', per: '1,9 gün', desc: "Neredeyse tamamen su buzundan oluşur." },
+        en: { name: 'Tethys', d: '1,062 km', dist: '294,600 km', per: '1.9 days', desc: 'It is made almost entirely of water ice.' } } },
+      { key: 'dione', r: 0.41, orbit: 18.2, period: 2.737, tint: [0.97, 0.96, 0.95], t: {
+        tr: { name: 'Dione', d: '1.123 km', dist: '377.400 km', per: '2,7 gün', desc: "Yüzeyinde parlak buz uçurumları vardır." },
+        en: { name: 'Dione', d: '1,123 km', dist: '377,400 km', per: '2.7 days', desc: 'It has bright ice cliffs on its surface.' } } },
+      { key: 'rhea', r: 0.51, orbit: 21, period: 4.518, tint: [0.95, 0.93, 0.9], t: {
+        tr: { name: 'Rhea', d: '1.527 km', dist: '527.100 km', per: '4,5 gün', desc: "Satürn'ün ikinci büyük uydusu; buzlu ve kraterlidir." },
+        en: { name: 'Rhea', d: '1,527 km', dist: '527,100 km', per: '4.5 days', desc: "Saturn's second-largest moon. It is icy and covered in craters." } } },
+      { key: 'titan', r: 1.28, orbit: 27, period: 15.945, tex: 'titan', t: {
+        tr: { name: 'Titan', d: '5.150 km', dist: '1,22 milyon km', per: '15,9 gün', desc: "Kalın, turuncu bir atmosferi olan tek uydu. Yüzeyinde sıvı metandan göller ve nehirler vardır." },
+        en: { name: 'Titan', d: '5,150 km', dist: '1.22 million km', per: '15.9 days', desc: 'The only moon with a thick atmosphere, and it is orange. Its surface has lakes and rivers of liquid methane.' } } },
+      { key: 'iapetus', r: 0.5, orbit: 34, period: 79.32, tex: 'iapetus', t: {
+        tr: { name: 'İapetus', d: '1.469 km', dist: '3,56 milyon km', per: '79 gün', desc: "İki renkli uydu: bir yüzü kömür gibi koyu, öbür yüzü kar gibi parlaktır." },
+        en: { name: 'Iapetus', d: '1,469 km', dist: '3.56 million km', per: '79 days', desc: 'A two-toned moon: one side is as dark as coal, the other as bright as snow.' } } }] },
+  { key: 'uranus', color: '#9edbe3', tex: 'uranus.jpg', ring: 'thin', moonCount: '28+',
     R: 3.4, dist: 250, period: 30687, rot: 0.718, tilt: 97.8, a0: 0.6, speed: 0.4, view: 14, bright: 1.05,
     atmo: [1.05, [0.6, 0.95, 1.0], 1.0],
-    stats: [['Güneş\'e uzaklık', '2,9 milyar km'], ['Çapı', '50.724 km'], ['Kendi etrafında dönüş', '17 saat'], ['Güneş etrafında dolanma', '84 yıl'], ['Ortalama sıcaklık', '−195 °C'], ['Uydu sayısı', '28+']],
-    lead: "Yan yatmış gezegen! Ekseni yaklaşık 98° eğik olduğu için Güneş'in etrafında yuvarlanır gibi dolanır. Mavi-yeşil rengini atmosferindeki metan gazından alır.",
-    fact: "Ekseni çok eğik olduğu için Uranüs'ün kutuplarında 42 yıl gündüz, ardından 42 yıl gece yaşanır.",
-    moonsNote: "Uranüs'ün bilinen 28'den fazla uydusu var. Uyduların adları Shakespeare'in oyunlarındaki karakterlerden gelir. Uydular da gezegenle birlikte yan yatmış bir düzlemde dolanır.",
+    t: {
+      tr: { name: 'Uranüs', gen: "Uranüs'ün", type: 'Buz devi',
+        stats: ['2,9 milyar km', '50.724 km', '17 saat', '84 yıl', '−195 °C'],
+        lead: "Yan yatmış gezegen! Ekseni yaklaşık 98° eğik olduğu için Güneş'in etrafında yuvarlanır gibi dolanır. Mavi-yeşil rengini atmosferindeki metan gazından alır.",
+        fact: "Ekseni çok eğik olduğu için Uranüs'ün kutuplarında 42 yıl gündüz, ardından 42 yıl gece yaşanır.",
+        moonsNote: "Uranüs'ün bilinen 28'den fazla uydusu var. Uyduların adları Shakespeare'in oyunlarındaki karakterlerden gelir. Uydular da gezegenle birlikte yan yatmış bir düzlemde dolanır." },
+      en: { name: 'Uranus', type: 'Ice giant',
+        stats: ['2.9 billion km', '50,724 km', '17 hours', '84 years', '−195 °C'],
+        lead: 'The planet that lies on its side! Its axis is tilted about 98°, so it rolls around the Sun. It gets its blue-green color from methane gas in its atmosphere.',
+        fact: 'Because its axis is so tilted, each pole of Uranus has 42 years of daylight followed by 42 years of night.',
+        moonsNote: "Uranus has more than 28 known moons. They are named after characters from Shakespeare's plays. The moons orbit in the same sideways plane as the planet." },
+    },
     moons: [
-      { key: 'miranda', name: 'Miranda', r: 0.21, orbit: 5.6, period: 1.413, tint: [0.85, 0.85, 0.85], d: '472 km', dist: '129.900 km', per: '1,4 gün',
-        desc: "Yüzeyinde 20 km derinliğinde, Güneş Sistemi'nin en yüksek uçurumları vardır." },
-      { key: 'ariel', name: 'Ariel', r: 0.42, orbit: 7, period: 2.52, tint: [1.0, 0.99, 0.97], d: '1.158 km', dist: '190.900 km', per: '2,5 gün',
-        desc: "Uranüs'ün en parlak uydusu." },
-      { key: 'umbriel', name: 'Umbriel', r: 0.42, orbit: 8.6, period: 4.144, tint: [0.45, 0.44, 0.43], d: '1.169 km', dist: '266.000 km', per: '4,1 gün',
-        desc: "Uranüs'ün en karanlık uydusu." },
-      { key: 'titania', name: 'Titania', r: 0.53, orbit: 11, period: 8.706, tint: [0.78, 0.74, 0.7], d: '1.577 km', dist: '436.300 km', per: '8,7 gün',
-        desc: "Uranüs'ün en büyük uydusu." },
-      { key: 'oberon', name: 'Oberon', r: 0.51, orbit: 13.5, period: 13.46, tint: [0.66, 0.62, 0.6], d: '1.523 km', dist: '583.500 km', per: '13,5 gün',
-        desc: "Uranüs'ün en dıştaki büyük uydusu; kraterlerle kaplıdır." }] },
-  { key: 'neptun', name: 'Neptün', gen: "Neptün'ün", type: 'Buz devi', color: '#4c72e0', tex: 'neptune.jpg', ring: 'faint',
+      { key: 'miranda', r: 0.21, orbit: 5.6, period: 1.413, tint: [0.85, 0.85, 0.85], t: {
+        tr: { name: 'Miranda', d: '472 km', dist: '129.900 km', per: '1,4 gün', desc: "Yüzeyinde 20 km derinliğinde, Güneş Sistemi'nin en yüksek uçurumları vardır." },
+        en: { name: 'Miranda', d: '472 km', dist: '129,900 km', per: '1.4 days', desc: 'It has the tallest cliffs in the Solar System, about 20 km high.' } } },
+      { key: 'ariel', r: 0.42, orbit: 7, period: 2.52, tint: [1.0, 0.99, 0.97], t: {
+        tr: { name: 'Ariel', d: '1.158 km', dist: '190.900 km', per: '2,5 gün', desc: "Uranüs'ün en parlak uydusu." },
+        en: { name: 'Ariel', d: '1,158 km', dist: '190,900 km', per: '2.5 days', desc: 'The brightest moon of Uranus.' } } },
+      { key: 'umbriel', r: 0.42, orbit: 8.6, period: 4.144, tint: [0.45, 0.44, 0.43], t: {
+        tr: { name: 'Umbriel', d: '1.169 km', dist: '266.000 km', per: '4,1 gün', desc: "Uranüs'ün en karanlık uydusu." },
+        en: { name: 'Umbriel', d: '1,169 km', dist: '266,000 km', per: '4.1 days', desc: 'The darkest moon of Uranus.' } } },
+      { key: 'titania', r: 0.53, orbit: 11, period: 8.706, tint: [0.78, 0.74, 0.7], t: {
+        tr: { name: 'Titania', d: '1.577 km', dist: '436.300 km', per: '8,7 gün', desc: "Uranüs'ün en büyük uydusu." },
+        en: { name: 'Titania', d: '1,577 km', dist: '436,300 km', per: '8.7 days', desc: 'The largest moon of Uranus.' } } },
+      { key: 'oberon', r: 0.51, orbit: 13.5, period: 13.46, tint: [0.66, 0.62, 0.6], t: {
+        tr: { name: 'Oberon', d: '1.523 km', dist: '583.500 km', per: '13,5 gün', desc: "Uranüs'ün en dıştaki büyük uydusu; kraterlerle kaplıdır." },
+        en: { name: 'Oberon', d: '1,523 km', dist: '583,500 km', per: '13.5 days', desc: "The outermost of Uranus's large moons. It is covered in craters." } } }] },
+  { key: 'neptun', color: '#4c72e0', tex: 'neptune.jpg', ring: 'faint', moonCount: '16',
     R: 3.3, dist: 300, period: 60190, rot: 0.671, tilt: 28.3, a0: 2.6, speed: 0.5, view: 11, bright: 1.2,
     atmo: [1.05, [0.35, 0.55, 1.0], 1.1],
-    stats: [['Güneş\'e uzaklık', '4,5 milyar km'], ['Çapı', '49.244 km'], ['Kendi etrafında dönüş', '16 saat'], ['Güneş etrafında dolanma', '165 yıl'], ['Ortalama sıcaklık', '−200 °C'], ['Uydu sayısı', '16']],
-    lead: "Güneş'e en uzak gezegen. Koyu mavi rengini metan gazından alır. Güneş Sistemi'nin en hızlı rüzgârları burada eser: saatte 2.000 km'den fazla.",
-    fact: "Neptün, gökyüzüne bakılarak değil, matematik hesaplarıyla yeri önceden bulunan ilk gezegendir (1846).",
-    moonsNote: "Neptün'ün bilinen 16 uydusu var. Burada en büyük ikisi gösteriliyor.",
+    t: {
+      tr: { name: 'Neptün', gen: "Neptün'ün", type: 'Buz devi',
+        stats: ['4,5 milyar km', '49.244 km', '16 saat', '165 yıl', '−200 °C'],
+        lead: "Güneş'e en uzak gezegen. Koyu mavi rengini metan gazından alır. Güneş Sistemi'nin en hızlı rüzgârları burada eser: saatte 2.000 km'den fazla.",
+        fact: "Neptün, gökyüzüne bakılarak değil, matematik hesaplarıyla yeri önceden bulunan ilk gezegendir (1846).",
+        moonsNote: "Neptün'ün bilinen 16 uydusu var. Burada en büyük ikisi gösteriliyor." },
+      en: { name: 'Neptune', type: 'Ice giant',
+        stats: ['4.5 billion km', '49,244 km', '16 hours', '165 years', '−200 °C'],
+        lead: 'The planet farthest from the Sun. It gets its deep blue color from methane gas. The fastest winds in the Solar System blow here: more than 2,000 km per hour.',
+        fact: 'Neptune was the first planet found with mathematics: its position was calculated before anyone saw it (1846).',
+        moonsNote: 'Neptune has 16 known moons. The two largest are shown here.' },
+    },
     moons: [
-      { key: 'proteus', name: 'Proteus', r: 0.19, orbit: 5.6, period: 1.122, shape: true, tint: [0.5, 0.5, 0.5], d: '420 km', dist: '117.600 km', per: '1,1 gün',
-        desc: "Düzensiz, köşeli bir şekli olan koyu renkli bir uydu." },
-      { key: 'triton', name: 'Triton', r: 0.79, orbit: 9, period: -5.877, incl: 0.4, tex: 'triton', d: '2.707 km', dist: '354.800 km', per: '5,9 gün (ters yönde)',
-        desc: "Neptün'ün dönüş yönünün tersine dolanır. Bu yüzden aslında Neptün'ün yakaladığı bir cüce gezegen olduğu düşünülüyor. Yüzeyinden azot gazı fışkırır." }] },
+      { key: 'proteus', r: 0.19, orbit: 5.6, period: 1.122, shape: true, tint: [0.5, 0.5, 0.5], t: {
+        tr: { name: 'Proteus', d: '420 km', dist: '117.600 km', per: '1,1 gün', desc: "Düzensiz, köşeli bir şekli olan koyu renkli bir uydu." },
+        en: { name: 'Proteus', d: '420 km', dist: '117,600 km', per: '1.1 days', desc: 'A dark moon with an irregular, boxy shape.' } } },
+      { key: 'triton', r: 0.79, orbit: 9, period: -5.877, incl: 0.4, tex: 'triton', t: {
+        tr: { name: 'Triton', d: '2.707 km', dist: '354.800 km', per: '5,9 gün (ters yönde)', desc: "Neptün'ün dönüş yönünün tersine dolanır. Bu yüzden aslında Neptün'ün yakaladığı bir cüce gezegen olduğu düşünülüyor. Yüzeyinden azot gazı fışkırır." },
+        en: { name: 'Triton', d: '2,707 km', dist: '354,800 km', per: '5.9 days (backwards)', desc: "It orbits in the opposite direction to Neptune's spin. That's why scientists think it is really a dwarf planet that Neptune captured. Nitrogen gas shoots out of its surface." } } }] },
 ];
 PLANETS.forEach(p => p.moons.forEach((m, i) => { m.a0 = (i * 2.399 + p.dist * 0.07) % (Math.PI * 2); }));
-const moonsLabel = p => p.moons.length === 0 ? 'Uydusu yok' : (p.stats[5][1] + ' uydu');
+const moonsLabel = p => U().moonsCount(p.moonCount);
 
 /* ================= Ölçekler ================= */
 const S = { sunR: 9, earthOrbit: 62, earthR: 2.4, moonOrbit: 10, moonR: 1.0 };
@@ -1119,7 +1353,7 @@ const glowB = new THREE.Sprite(new THREE.SpriteMaterial({
 glowB.scale.setScalar(S.sunR * 12);
 glowA.layers.set(MAIN); glowB.layers.set(MAIN);
 sunGroup.add(glowA, glowB);
-const sunLabel = new CSS2DObject(Object.assign(document.createElement('div'), { className: 'lbl sun pick', textContent: 'Güneş' }));
+const sunLabel = new CSS2DObject(Object.assign(document.createElement('div'), { className: 'lbl sun pick' }));
 sunLabel.element.dataset.go = 'gunes';
 sunLabel.position.set(0, S.sunR + 3.2, 0);
 sunGroup.add(sunLabel);
@@ -1188,7 +1422,7 @@ clouds.scale.setScalar(1.012);
 tilt.add(clouds);
 earthGroup.add(makeAtmo(S.earthR * 1.07, [0.32, 0.62, 1.0], 1.4));
 [earth, nightLights, clouds].forEach(m => m.layers.set(MAIN));
-const earthLabel = new CSS2DObject(Object.assign(document.createElement('div'), { className: 'lbl pick', textContent: 'Dünya' }));
+const earthLabel = new CSS2DObject(Object.assign(document.createElement('div'), { className: 'lbl pick' }));
 earthLabel.element.dataset.go = 'dunya';
 earthLabel.position.set(0, S.earthR + 1.4, 0);
 earthGroup.add(earthLabel);
@@ -1215,16 +1449,13 @@ PHASES.forEach((p, k) => {
   dot.layers.set(MAIN);
   phaseGroup.add(dot);
   phaseDots.push(dot);
-  const el = document.createElement('div');
-  el.className = 'plabel';
-  el.textContent = p.name;
-  const lbl = new CSS2DObject(el);
+  const lbl = new CSS2DObject(Object.assign(document.createElement('div'), { className: 'plabel' }));
   const r = S.moonOrbit + 2.6;
   lbl.position.set(Math.cos(a) * r, 0, -Math.sin(a) * r);
   phaseGroup.add(lbl);
   phaseLabels.push(lbl);
 });
-const lightLabel = new CSS2DObject(Object.assign(document.createElement('div'), { className: 'lbl light', textContent: 'Güneş ışığı ➝' }));
+const lightLabel = new CSS2DObject(Object.assign(document.createElement('div'), { className: 'lbl light' }));
 scene.add(lightLabel);
 
 /* ================= Ay ================= */
@@ -1279,8 +1510,8 @@ function circleLine(radius, color, opacity, segs = 256) {
   line.layers.set(MAIN);
   return line;
 }
-function makeLabel(text, cls, go) {
-  const el = Object.assign(document.createElement('div'), { className: cls, textContent: text });
+function makeLabel(cls, go) {
+  const el = Object.assign(document.createElement('div'), { className: cls });
   el.dataset.go = go;
   return new CSS2DObject(el);
 }
@@ -1303,7 +1534,7 @@ function buildMoon(p, m, parent) {
   mesh.scale.setScalar(m.r);
   mesh.layers.set(MAIN);
   holder.add(mesh);
-  const label = makeLabel(m.name, 'lbl moonl pick', p.key + ':' + m.key);
+  const label = makeLabel('lbl moonl pick', p.key + ':' + m.key);
   scene.add(label);
   return { m, holder, mesh, line, label, r: m.r };
 }
@@ -1312,7 +1543,7 @@ for (const p of PLANETS) {
   const b = { kind: 'planet', p, info: p, R: p.R, moons: [] };
   if (p.special) {
     Object.assign(b, { group: earthGroup, tiltG: tilt, mesh: earth, label: earthLabel });
-    const moonLabel = makeLabel('Ay', 'lbl moonl pick', 'dunya:ay');
+    const moonLabel = makeLabel('lbl moonl pick', 'dunya:ay');
     scene.add(moonLabel);
     b.moons.push({ m: p.moons[0], holder: moonHolder, mesh: moon, line: moonOrbitLine, label: moonLabel, r: S.moonR });
   } else {
@@ -1344,7 +1575,7 @@ for (const p of PLANETS) {
       ring.layers.set(MAIN);
       tiltG.add(ring);
     }
-    const label = makeLabel(p.name, 'lbl pick', p.key);
+    const label = makeLabel('lbl pick', p.key);
     label.position.set(0, p.R + 1.4, 0);
     group.add(label);
     Object.assign(b, { group, tiltG, mesh, label });
@@ -1467,7 +1698,7 @@ function updateCamera(now) {
 
 function setView(name, dur = 1500) {
   currentView = name;
-  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === name)));
+  document.querySelectorAll('#viewSeg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === name)));
   flyTo({ b: EARTH, mo: null }, VIEWS[name], dur);
 }
 
@@ -1488,11 +1719,10 @@ function litPath(phi, r) {
 const phaseBtns = PHASES.map((p, k) => {
   const b = document.createElement('button');
   b.className = 'ph';
-  b.setAttribute('aria-label', p.name + (p.tag ? ' (' + p.tag.toLowerCase() + ')' : ''));
   b.innerHTML = `<svg viewBox="-12 -12 24 24" aria-hidden="true">
       <circle r="10" fill="#1a2036" stroke="rgba(160,185,255,.35)" stroke-width="0.8"/>
       <path d="${litPath(k / 8 * TAU, 10)}" fill="#f2ead2"/>
-    </svg><span class="n">${p.name}</span><span class="t">${p.tag || ''}</span>`;
+    </svg><span class="n"></span><span class="t"></span>`;
   b.addEventListener('click', () => goToIndex(k));
   $('phases').appendChild(b);
   return b;
@@ -1527,8 +1757,8 @@ const phaseBox = $('phaseBox');
 let shownIdx = -1;
 function updatePanel(k = mod8(step)) {
   shownIdx = k;
-  const p = PHASES[k];
-  $('phStep').textContent = `Evre ${k + 1} / 8`;
+  const p = PHASES[k][lang];
+  $('phStep').textContent = U().phaseStep(k + 1);
   $('phDay').textContent = p.day;
   $('phName').textContent = p.name;
   $('phTag').hidden = !p.tag;
@@ -1550,7 +1780,7 @@ function setPlaying(on) {
   playing = on;
   playBtns.forEach(b => {
     b.setAttribute('aria-pressed', String(on));
-    b.setAttribute('aria-label', on ? 'Zamanı durdur' : 'Zamanı akıt');
+    b.setAttribute('aria-label', on ? U().playOn : U().playOff);
     b.querySelector('.playIcon').innerHTML = on
       ? '<rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/>'
       : '<path d="M8 5.5v13l11-6.5z"/>';
@@ -1566,7 +1796,7 @@ function togglePlay() {
 $('next').addEventListener('click', next);
 $('prev').addEventListener('click', prev);
 playBtns.forEach(b => b.addEventListener('click', togglePlay));
-document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => setView(b.dataset.view)));
+document.querySelectorAll('#viewSeg button').forEach(b => b.addEventListener('click', () => setView(b.dataset.view)));
 
 const toggles = { rings: true, labels: true, rays: true, orbits: true, names: true };
 function bindToggle(id, key) {
@@ -1596,10 +1826,7 @@ const moonColor = m => m.tex ? { io: '#e2c25a', europa: '#d9ccb2', titan: '#d89a
 const bodyBtns = BODIES.map(b => {
   const btn = document.createElement('button');
   btn.className = 'ph body';
-  const name = b.kind === 'sun' ? 'Güneş' : b.p.name;
-  const sub = b.kind === 'sun' ? 'Tüm sistem' : moonsLabel(b.p);
-  btn.setAttribute('aria-label', b.kind === 'sun' ? 'Tüm Güneş Sistemi' : name);
-  btn.innerHTML = `<span class="ico">${iconOf(b)}</span><span class="n">${name}</span><span class="t">${sub}</span>`;
+  btn.innerHTML = `<span class="ico">${iconOf(b)}</span><span class="n"></span><span class="t"></span>`;
   btn.addEventListener('click', () => selectBody(b));
   $('bodies').appendChild(btn);
   return btn;
@@ -1608,42 +1835,44 @@ const bodyBtns = BODIES.map(b => {
 const stat = ([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`;
 const row = (ico, title, sub, go) => `<button class="row" data-go="${go}"><span class="ico">${ico}</span><span><b>${title}</b><small>${sub}</small></span><span class="go" aria-hidden="true">›</span></button>`;
 const crumb = (text, go) => `<button class="crumb" data-go="${go}">‹ ${text}</button>`;
-const know = t => t ? `<aside class="know"><h3>Biliyor musun?</h3><p>${t}</p></aside>` : '';
+const know = t => t ? `<aside class="know"><h3>${U().know}</h3><p>${t}</p></aside>` : '';
 
 function renderSysPanel() {
-  const { b, mo } = focus;
+  const { b, mo } = focus, u = U();
   let h;
   if (b.kind === 'sun') {
-    h = `<div class="sys-head">${iconOf(b, 1.8)}<div><span class="eyebrow">${SUN_INFO.type}</span><h2>${SUN_INFO.title}</h2></div></div>
-      <p class="lead">${SUN_INFO.lead}</p>
-      <dl class="stats">${SUN_INFO.stats.map(stat).join('')}</dl>
-      ${know(SUN_INFO.fact)}
-      <h3 class="sub">Gezegenler</h3>
-      <p class="note">${SUN_INFO.note}</p>
-      <div class="list">${BODIES.slice(1).map(x => row(iconOf(x), x.p.name, `${x.p.type} · ${moonsLabel(x.p)}`, x.p.key)).join('')}</div>`;
+    const s = tx(SUN_INFO);
+    h = `<div class="sys-head">${iconOf(b, 1.8)}<div><span class="eyebrow">${s.type}</span><h2>${s.title}</h2></div></div>
+      <p class="lead">${s.lead}</p>
+      <dl class="stats">${s.stats.map(stat).join('')}</dl>
+      ${know(s.fact)}
+      <h3 class="sub">${u.planetsH}</h3>
+      <p class="note">${s.note}</p>
+      <div class="list">${BODIES.slice(1).map(x => row(iconOf(x), tx(x.p).name, `${tx(x.p).type} · ${moonsLabel(x.p)}`, x.p.key)).join('')}</div>`;
   } else if (!mo) {
-    const p = b.p;
-    h = `${crumb('Güneş Sistemi', 'gunes')}
-      <div class="sys-head">${iconOf(b, 2.1)}<div><span class="eyebrow">${p.type}</span><h2>${p.name}</h2></div></div>
-      <p class="lead">${p.lead}</p>
-      <dl class="stats">${p.stats.map(stat).join('')}</dl>
-      ${know(p.fact)}
-      ${p.special ? `<button class="cta" data-mode="ay">Ay'ın evrelerini incele ›</button>` : ''}
-      <h3 class="sub">${p.moons.length ? 'Uyduları' : 'Uydusu'}</h3>
-      ${p.moons.length ? `<div class="list">${p.moons.map(m => row(plIcon(moonColor(m), 18), m.name, m.desc, p.key + ':' + m.key)).join('')}</div>` : `<p class="note">${p.noMoons}</p>`}
-      ${p.moonsNote ? `<p class="note">${p.moonsNote}</p>` : ''}`;
+    const p = b.p, t = tx(p);
+    const stats = u.statLabels.map((l, i) => [l, i < 5 ? t.stats[i] : p.moonCount]);
+    h = `${crumb(u.modeSys, 'gunes')}
+      <div class="sys-head">${iconOf(b, 2.1)}<div><span class="eyebrow">${t.type}</span><h2>${t.name}</h2></div></div>
+      <p class="lead">${t.lead}</p>
+      <dl class="stats">${stats.map(stat).join('')}</dl>
+      ${know(t.fact)}
+      ${p.special ? `<button class="cta" data-mode="ay">${u.ctaPhases}</button>` : ''}
+      <h3 class="sub">${p.moons.length ? u.moonsH : u.noMoonsH}</h3>
+      ${p.moons.length ? `<div class="list">${p.moons.map(m => row(plIcon(moonColor(m), 18), tx(m).name, tx(m).desc, p.key + ':' + m.key)).join('')}</div>` : `<p class="note">${t.noMoons}</p>`}
+      ${t.moonsNote ? `<p class="note">${t.moonsNote}</p>` : ''}`;
   } else {
-    const p = b.p, m = mo.m, others = p.moons.filter(x => x !== m);
-    h = `${crumb(p.name, p.key)}
-      <div class="sys-head">${plIcon(moonColor(m), 52)}<div><span class="eyebrow">${p.gen} uydusu</span><h2>${m.name}</h2></div></div>
-      <p class="lead">${m.desc}</p>
-      <dl class="stats">${[['Çapı', m.d], ['Gezegene uzaklık', m.dist], ['Gezegen etrafında dolanma', m.per], ['Gezegeni', p.name]].map(stat).join('')}</dl>
-      ${p.special ? `<button class="cta" data-mode="ay">Ay'ın evrelerini incele ›</button>` : ''}
-      ${others.length ? `<h3 class="sub">Diğer uyduları</h3><div class="list">${others.map(x => row(plIcon(moonColor(x), 18), x.name, x.desc, p.key + ':' + x.key)).join('')}</div>` : ''}`;
+    const p = b.p, m = mo.m, t = tx(m), others = p.moons.filter(x => x !== m);
+    const vals = [t.d, t.dist, t.per, tx(p).name];
+    h = `${crumb(tx(p).name, p.key)}
+      <div class="sys-head">${plIcon(moonColor(m), 52)}<div><span class="eyebrow">${u.moonOf(p)}</span><h2>${t.name}</h2></div></div>
+      <p class="lead">${t.desc}</p>
+      <dl class="stats">${u.moonStatLabels.map((l, i) => stat([l, vals[i]])).join('')}</dl>
+      ${p.special ? `<button class="cta" data-mode="ay">${u.ctaPhases}</button>` : ''}
+      ${others.length ? `<h3 class="sub">${u.otherMoons}</h3><div class="list">${others.map(x => row(plIcon(moonColor(x), 18), tx(x).name, tx(x).desc, p.key + ':' + x.key)).join('')}</div>` : ''}`;
   }
   const el = $('sysPanel');
   el.innerHTML = `<div class="sys swap">${h}</div>`;
-  el.scrollTop = 0;
   $('panel').scrollTop = 0;
   const cur = BODIES.indexOf(b);
   bodyBtns.forEach((x, i) => x.setAttribute('aria-current', String(i === cur)));
@@ -1653,7 +1882,7 @@ function renderSysPanel() {
 function selectBody(b, mo = null) {
   if (mode !== 'sys') setMode('sys', false);
   const fc = { b, mo };
-  const far = (focus.b.kind === 'sun') !== (b.kind === 'sun') || focus.b !== b;
+  const far = focus.b !== b;
   flyTo(fc, viewOf(fc), far ? 2600 : 1600);
   applySpeedDays(b.kind === 'sun' ? SYS_SPEED : b.p.speed);
   renderSysPanel();
@@ -1718,10 +1947,10 @@ renderer.domElement.addEventListener('pointerup', e => {
 });
 
 /* ================= Bölüm değiştirme ================= */
-const TEXT = {
-  ay: { title: "Ay'ın <span>Evreleri</span>", sub: "Dünya Güneş'in, Ay da Dünya'nın etrafında dolanıyor. Ay'ın görünüşü her gün biraz değişir." },
-  sys: { title: 'Güneş <span>Sistemi</span>', sub: "Sekiz gezegen Güneş'in etrafında dolanıyor. Bir gezegen seç, uydularıyla birlikte yakından incele." },
-};
+function setTitle() {
+  $('title').innerHTML = mode === 'ay' ? U().titleAy : U().titleSys;
+  $('subtitle').textContent = mode === 'ay' ? U().subAy : U().subSys;
+}
 function setMode(m, withFocus = true) {
   if (m === mode) return;
   mode = m;
@@ -1729,8 +1958,7 @@ function setMode(m, withFocus = true) {
   const ay = m === 'ay';
   $('ayTools').hidden = $('ayDock').hidden = $('ayPanel').hidden = !ay;
   $('sysTools').hidden = $('sysDock').hidden = $('sysPanel').hidden = ay;
-  $('title').innerHTML = TEXT[m].title;
-  $('subtitle').textContent = TEXT[m].sub;
+  setTitle();
   document.querySelectorAll('.modes button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
   if (ay) {
     setPlaying(false);
@@ -1772,14 +2000,16 @@ function updateVisibility() {
 /* ================= Hız çubuğu ================= */
 // Logaritmik ölçek: değer = log2(1 saniyede geçen gün)
 const speedEl = $('speed'), speedOut = $('speedOut');
-const fmtNum = x => x < 10 ? x.toFixed(1).replace('.', ',').replace(/,0$/, '') : String(Math.round(x));
+const fmtNum = x => x < 10 ? x.toFixed(1).replace(/\.0$/, '').replace('.', U().dec) : String(Math.round(x));
 function fmtRate(d) {
-  const hrs = d * 24;
-  if (hrs < 1) return Math.round(hrs * 60) + ' dk';
-  if (d < 1) return fmtNum(hrs) + ' saat';
-  if (d < 45) return fmtNum(d) + ' gün';
-  if (d < 400) return fmtNum(d / 30.44) + ' ay';
-  return fmtNum(d / YEAR) + ' yıl';
+  const u = U().units, hrs = d * 24;
+  let n, w;
+  if (hrs < 1) { n = String(Math.round(hrs * 60)); w = u.min; }
+  else if (d < 1) { n = fmtNum(hrs); w = u.hour; }
+  else if (d < 45) { n = fmtNum(d); w = u.day; }
+  else if (d < 400) { n = fmtNum(d / 30.44); w = u.month; }
+  else { n = fmtNum(d / YEAR); w = u.year; }
+  return n + ' ' + (Array.isArray(w) ? (n === '1' ? w[0] : w[1]) : w);
 }
 function applySpeed(v) {
   v = THREE.MathUtils.clamp(v, parseFloat(speedEl.min), parseFloat(speedEl.max));
@@ -1787,14 +2017,53 @@ function applySpeed(v) {
   speedDays = Math.pow(2, v);
   const txt = fmtRate(speedDays);
   speedOut.textContent = txt;
-  speedEl.setAttribute('aria-valuetext', `1 saniyede ${txt} geçer`);
+  speedEl.setAttribute('aria-valuetext', U().speedVal(txt));
 }
 const applySpeedDays = d => applySpeed(Math.log2(d));
 const defaultSpeed = () => mode === 'ay' ? AY_SPEED : focus.b.kind === 'sun' ? SYS_SPEED : focus.b.p.speed;
 speedEl.addEventListener('input', () => applySpeed(parseFloat(speedEl.value)));
 speedEl.addEventListener('dblclick', () => applySpeedDays(defaultSpeed()));
 speedEl.addEventListener('pointerup', () => speedEl.blur()); // ← → tuşları evrelerde/gezegenlerde kalsın
-applySpeedDays(AY_SPEED);
+
+/* ================= Dil değiştirme ================= */
+function applyLang(l) {
+  lang = l;
+  try { localStorage.setItem('ay-evreleri-lang', l); } catch (e) { /* depolama kapalı olabilir */ }
+  const u = U();
+  document.documentElement.lang = l;
+  document.title = u.docTitle;
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = u[el.dataset.i18n]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = u[el.dataset.i18nHtml]; });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', u[el.dataset.i18nAria]));
+  document.querySelectorAll('[data-i18n-title]').forEach(el => { el.title = u[el.dataset.i18nTitle]; });
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  setTitle();
+  sunLabel.element.textContent = u.sun;
+  lightLabel.element.textContent = u.light;
+  for (const b of BODIES.slice(1)) {
+    b.label.element.textContent = tx(b.p).name;
+    for (const mo of b.moons) mo.label.element.textContent = tx(mo.m).name;
+  }
+  phaseLabels.forEach((lb, k) => { lb.element.textContent = PHASES[k][l].name; });
+  phaseBtns.forEach((b, k) => {
+    const p = PHASES[k][l];
+    b.setAttribute('aria-label', p.name + (p.tag ? ` (${p.tag.toLowerCase()})` : ''));
+    b.querySelector('.n').textContent = p.name;
+    b.querySelector('.t').textContent = p.tag || '';
+  });
+  bodyBtns.forEach((btn, i) => {
+    const b = BODIES[i], sunB = b.kind === 'sun';
+    btn.setAttribute('aria-label', sunB ? u.allSolar : tx(b.p).name);
+    btn.querySelector('.n').textContent = sunB ? u.sun : tx(b.p).name;
+    btn.querySelector('.t').textContent = sunB ? u.allSystem : moonsLabel(b.p);
+  });
+  updatePanel(shownIdx < 0 ? mod8(step) : shownIdx);
+  if (mode === 'sys') renderSysPanel();
+  applySpeed(parseFloat(speedEl.value));
+  setPlaying(playing);
+  lastPct = -1; lastAge = '';
+}
+document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => { if (b.dataset.lang !== lang) applyLang(b.dataset.lang); }));
 
 // Fareyle tıklanan düğme odak almasın; böylece Boşluk tuşu hep oynat/durdur olur
 document.addEventListener('mousedown', e => { if (e.target.closest('button')) e.preventDefault(); });
@@ -1834,7 +2103,7 @@ new ResizeObserver(resize).observe(insetBox);
 resize();
 
 function intro() {
-  if (location.hash === '#gunes-sistemi') setMode('sys');
+  if (HASH === 'gunes-sistemi' || HASH === 'solar-system') setMode('sys');
   else setView('yakin', 3600);
 }
 
@@ -1845,7 +2114,8 @@ const litPct = $('litPct'), litFill = $('litFill'), insetNote = $('insetNote');
 let lastPct = -1, lastAge = '';
 const ageTxt = $('ageTxt'), spinNote = $('spinNote');
 
-updatePanel();
+applySpeedDays(AY_SPEED);
+applyLang(lang);
 updateVisibility();
 camera.position.copy(offsetOf(OVERVIEW_C, (setFrame(focus), new THREE.Vector3())));
 
@@ -1965,19 +2235,18 @@ renderer.setAnimationLoop(() => {
   const pct = Math.round(st.frac * 100);
   if (pct !== lastPct) {
     lastPct = pct;
-    litPct.textContent = '%' + pct;
+    litPct.textContent = U().pct(pct);
     litFill.style.width = pct + '%';
     insetNote.hidden = pct > 3;
   }
   const age = ((simDay % SYNODIC) + SYNODIC) % SYNODIC;
-  const ageStr = age.toFixed(1).replace('.', ',');
+  const ageStr = age.toFixed(1).replace('.', U().dec);
   if (ageStr !== lastAge) {
     lastAge = ageStr;
-    ageTxt.textContent = ageStr + ' gün';
-    spinNote.textContent = `Bu sürede Dünya kendi etrafında ${Math.floor(age)} kez döndü.`;
+    ageTxt.textContent = U().age(ageStr);
+    spinNote.textContent = U().spin(Math.floor(age));
   }
 });
 </script>
-
 </body>
 </html>

@@ -12,6 +12,7 @@
 
 5\. sınıf Fen Bilimleri "Güneş, Dünya ve Ay" ünitesi için hazırlanmış, tarayıcıda çalışan 3B ders aracı.
 Three.js ile yapıldı; kurulum gerektirmez, tek bir HTML dosyası ve dokulardan oluşur.
+Arayüz **Türkçe ve İngilizce**dir; sağ üstteki **TR / EN** düğmesiyle değiştirilir.
 
 ### Neler var?
 
@@ -42,6 +43,9 @@ Fareyle sürükleyerek döndürün, tekerlekle yaklaşın. Sağdaki dikey çubuk
 ("1 sn = 14 saat" gibi); çift tıklayınca varsayılan hıza döner.
 
 `#gunes-sistemi` adresi uygulamayı doğrudan Güneş Sistemi bölümüyle açar.
+
+**Dil:** Uygulama tarayıcının diline göre açılır; seçilen dil hatırlanır.
+Bağlantıya `?lang=en` ya da `?lang=tr` eklenirse (veya `#en` / `#tr`) o dilde açılır.
 
 ### Kendi bilgisayarında ya da sitende çalıştırma
 
@@ -74,7 +78,7 @@ Metinler 5. sınıf öğrencilerine göre sade tutulmuştur; bilimsel bir yanlı
 
 A browser-based 3D lesson built for the 5th-grade science unit "The Sun, the Earth and the Moon"
 (Turkish curriculum). Made with Three.js; no installation or build step — a single HTML file plus textures.
-**The interface and all lesson texts are in Turkish.**
+The interface is available in **Turkish and English**; switch with the **TR / EN** buttons at the top right.
 
 ### Features
 
@@ -104,7 +108,10 @@ A browser-based 3D lesson built for the 5th-grade science unit "The Sun, the Ear
 Drag to rotate, scroll to zoom. The vertical slider on the right sets how fast time flows
 (e.g. "1 sec = 14 hours"); double-click it to reset to the default.
 
-Add `#gunes-sistemi` to the URL to open the app directly in the Solar System section.
+Add `#solar-system` (or `#gunes-sistemi`) to the URL to open the app directly in the Solar System section.
+
+**Language:** the app opens in your browser's language and remembers your choice.
+Add `?lang=en` or `?lang=tr` to the URL (or `#en` / `#tr`) to open it in a specific language.
 
 ### Running it locally or on your own site
 
@@ -123,7 +130,7 @@ Three.js and the fonts load from a CDN, so an internet connection is required.
 
 Issues and pull requests for bugs, suggestions and improvements are welcome.
 The texts are deliberately simple for 10–11-year-olds; if you spot a scientific error, please report it.
-Translations of the interface into other languages would also be very welcome.
+Translations into more languages are welcome: all interface texts live in the `UI`, `PHASES` and `PLANETS` objects in `index.html`.
 
 ### License
 
